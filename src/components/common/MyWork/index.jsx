@@ -18,7 +18,11 @@ const MyWork = () => {
   });
   const workY = useTransform(scrollYProgress2, [0, 1], ["-100%", "0%"]);
   const work2Y = useTransform(scrollYProgress2, [0, 1], ["100%", "0%"]);
-  const projectY = useTransform(scrollYProgress2, [0, 1], ["500%", "0%"]);
+  const projectY = useTransform(scrollYProgress2, [0, 1], ["500%", "-10%"]);
+  const moveWork = useTransform(scrollYProgress2, [0, 1], [-1000, 0]);
+  const moveWorkInverse = useTransform(scrollYProgress2, [0, 1], [1000, 0]);
+  const rotateWork = useTransform(scrollYProgress2, [0, 1], [360, 0]);
+  const rotateWorkInverse = useTransform(scrollYProgress2, [0, 1], [-360, 0]);
   const headerText = new Array(100).fill("MY WORK.").map((item, i) => item);
   const titleText = `MYWORK`.split("");
 
@@ -32,7 +36,7 @@ const MyWork = () => {
           position: "absolute",
           left,
           top,
-         }}
+        }}
         component={motion.div}
         initial={{ scale: 0.5, opacity: 0, y: 600 }}
         animate={{
@@ -42,7 +46,7 @@ const MyWork = () => {
           transition: { delay, ...constants["transitions"] },
         }}
         exit={{ scale: 0.5, opacity: 0, y: 600 }}
-        style={{ y: projectY }}
+        style={{ y: projectY, x: workY }}
       ></Stack>
     );
   };
@@ -99,7 +103,11 @@ const MyWork = () => {
               }}
               key={i}
               component={motion.div}
-              style={{ y: i % 2 === 0 ? work2Y : workY , x: i % 2 === 0 ? workY : work2Y}}
+              style={{
+                y: i % 2 === 0 ? moveWorkInverse : workY,
+                x: i % 2 === 0 ? moveWork : moveWorkInverse,
+                rotate: i % 2 === 0 ? rotateWorkInverse : rotateWork,
+              }}
             >
               {item}
             </BoldText>
