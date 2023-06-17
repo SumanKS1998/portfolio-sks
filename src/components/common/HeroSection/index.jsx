@@ -118,7 +118,6 @@ const index = () => {
               borderColor: "#ff5858",
             }}
             onMouseOver={() => {
-              setBtnHovered(true);
               setShowBtnText(false);
             }}
             onMouseLeave={() => setBtnHovered(false)}
@@ -130,9 +129,12 @@ const index = () => {
                   initial={{ y: "200%" }}
                   animate={{
                     y: "0%",
-                    transition: { duration: 0.1 },
+                    transition: { duration: 0.2, type: "spring" },
                   }}
-                  exit={{ y: "200%", transition: { duration: 0.01 } }}
+                  exit={{ y: "200%", transition: { duration: 0.2 } }}
+                  onAnimationComplete={(e) =>
+                    e.y === "200%" && setBtnHovered(true)
+                  }
                 >
                   Contact
                 </SemiboldText>
@@ -145,9 +147,9 @@ const index = () => {
                   initial={{ y: "-200%" }}
                   animate={{
                     y: "0%",
-                    transition: { duration: 0.5, type: "spring" },
+                    transition: { duration: 0.2, type: "spring" },
                   }}
-                  exit={{ y: "-200%", transition: { duration: 0.01 } }}
+                  exit={{ y: "-200%", transition: { duration: 0.2 } }}
                   onAnimationComplete={(e) =>
                     e.y === "-200%" && setShowBtnText(true)
                   }
