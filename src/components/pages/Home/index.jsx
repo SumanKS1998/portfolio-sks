@@ -1,12 +1,12 @@
 import React from "react";
 import HeroSection from "../../common/HeroSection";
-import MyWork from "../../common/MyWork";
 import { Stack } from "@mui/material";
+import About from "../../common/About";
+import { useScroll } from "framer-motion";
 const Home = () => {
   return (
-    <Stack px={2} bgcolor="#000">
+    <Stack width="100vw" sx={{ overflowX: "hidden !important" }}>
       <HeroSection />
-      <MyWork />
     </Stack>
   );
 };
