@@ -9,8 +9,10 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDownward } from "@mui/icons-material";
 import { constants } from "../../../constants";
+import { ParallaxText } from "../ParallaxText";
 
-const index = () => {
+const HeroSection = () => {
+  const [firstAnimationOver, setFirstAnimationOver] = useState(false);
   const [showBtnText, setShowBtnText] = useState(true);
   const [btnHovered, setBtnHovered] = useState(false);
   const headingTextOne = `FRONT`.split("");
@@ -19,18 +21,21 @@ const index = () => {
   const headingTextTwo = `DEVELOPER`.split("");
   const renderTitle = ({ text, fontSize }) => {
     return (
-      <Stack direction="row" height="40vh" overflow="hidden">
+      <Stack
+        direction="row"
+        height="40vh"
+        overflow={firstAnimationOver ? "visible" : "hidden"}
+      >
         {text.map((item, i) => {
           return (
-            <HeadingText
+            <motion.div
               key={i}
-              sx={{
-                fontSize,
-                lineHeight: "85%",
-                letterSpacing: { lg: "-5px", xl: "-10px" },
-                ml: "-10px",
+              drag
+              dragConstraints={{ left: 0, right: 0, bottom: 0, top: 0 }}
+              // ===============BELOW ARE THE ANIMATIONS WHEN THE PAGE RENDERS============================//
+              onAnimationComplete={() => {
+                setFirstAnimationOver(true);
               }}
-              component={motion.div}
               whileHover={{
                 scale: 1.02,
                 color: ["#ffffe3", "#fe8563", "#ff5858"],
@@ -46,8 +51,8 @@ const index = () => {
                 },
               }}
             >
-              {item}
-            </HeadingText>
+              <HeadingText sx={styles.titleStyle}>{item}</HeadingText>
+            </motion.div>
           );
         })}
       </Stack>
@@ -76,7 +81,7 @@ const index = () => {
     },
   };
   return (
-    <Stack height="100vh">
+    <Stack>
       <Stack
         width="95vw"
         mx="auto"
@@ -111,11 +116,16 @@ const index = () => {
               color: "#ffffe3",
               overflow: "hidden",
               width: "100px",
+              mr: 1,
             }}
             component={motion.div}
             whileHover={{
               backgroundColor: "#ff5858",
               borderColor: "#ff5858",
+              scale: [1, 1.1, 1],
+              transition: {
+                duration: 0.2,
+              },
             }}
             onMouseOver={() => {
               setShowBtnText(false);
@@ -129,9 +139,9 @@ const index = () => {
                   initial={{ y: "200%" }}
                   animate={{
                     y: "0%",
-                    transition: { duration: 0.2, type: "spring" },
+                    transition: { duration: 0.1, type: "spring" },
                   }}
-                  exit={{ y: "200%", transition: { duration: 0.2 } }}
+                  exit={{ y: "200%", transition: { duration: 0.1 } }}
                   onAnimationComplete={(e) =>
                     e.y === "200%" && setBtnHovered(true)
                   }
@@ -147,9 +157,9 @@ const index = () => {
                   initial={{ y: "-200%" }}
                   animate={{
                     y: "0%",
-                    transition: { duration: 0.2, type: "spring" },
+                    transition: { duration: 0.1, type: "spring" },
                   }}
-                  exit={{ y: "-200%", transition: { duration: 0.2 } }}
+                  exit={{ y: "-200%", transition: { duration: 0.1 } }}
                   onAnimationComplete={(e) =>
                     e.y === "-200%" && setShowBtnText(true)
                   }
@@ -169,88 +179,107 @@ const index = () => {
         animate="animate"
         variants={entryContainerVariant}
       >
-        <Stack
-          width="95vw"
-          mx="auto"
-          direction="row"
-          justifyContent={"space-between"}
-          component={motion.div}
-          variants={entryVariant}
-        >
-          {renderTitle({ text: headingTextOne, fontSize: "22vw" })}
-          {renderTitle({ text: headingTextSubOne, fontSize: "22vw" })}
-          {renderTitle({ text: headingTextSubTwo, fontSize: "22vw" })}
-        </Stack>
-        <Stack
-          width="95vw"
-          mx="auto"
-          direction="row"
-          justifyContent="space-between"
-          gap="50px"
-        >
-          {renderTitle({ text: headingTextTwo, fontSize: "22vw" })}
+        <ParallaxText direction={false}>
           <Stack
-            gap="48px"
-            width={{ xs: "340px", xl: "500px" }}
-            py={1}
-            height="40vh"
-            overflow="hidden"
+            width="100vw"
+            mx="auto"
+            direction="row"
+            justifyContent={"space-between"}
+            component={motion.div}
+            variants={entryVariant}
           >
-            <RegularText
-              sx={{ lineHeight: "120%", fontSize: { xs: "18px", xl: "22px" } }}
-              component={motion.div}
-              variants={entryVariant}
+            {renderTitle({ text: headingTextOne, fontSize: "22vw" })}
+            {renderTitle({ text: headingTextSubOne, fontSize: "22vw" })}
+            {renderTitle({ text: headingTextSubTwo, fontSize: "22vw" })}
+          </Stack>
+        </ParallaxText>
+        <ParallaxText direction={true}>
+          <Stack
+            width="100vw"
+            mx="auto"
+            direction="row"
+            justifyContent="space-between"
+            gap="50px"
+          >
+            {renderTitle({ text: headingTextTwo, fontSize: "22vw" })}
+            <Stack
+              gap="48px"
+              width={{ xs: "340px ", xl: "500px " }}
+              py={1}
+              height="40vh"
+              overflow="hidden"
+              sx={{ whiteSpace: "pre-wrap !important" }}
             >
-              <SemiboldText
-                component={"span"}
-                mr={"16px"}
+              <RegularText
                 sx={{
                   lineHeight: "120%",
-                  color: "#777777",
+                  fontSize: { xs: "18px", xl: "22px" },
                 }}
-                variant="h6"
+                component={motion.div}
+                variants={entryVariant}
               >
-                ABOUT
-              </SemiboldText>
-              I am a developer based in Guwahati, India, with a specialization
-              in building exceptional digital experiences on the web. My current
-              focus revolves around crafting remarkable products at Ellenox.
-            </RegularText>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              component={motion.div}
-              variants={entryVariant}
-            >
-              <SemiboldText sx={{ color: "#777777" }} variant="h6">
-                Scroll Down
-              </SemiboldText>
-              <IconButton
-                sx={{
-                  height: "40px",
-                  width: "40px",
-                  overflow: "hidden",
-                }}
+                <SemiboldText
+                  component={"span"}
+                  mr={"16px"}
+                  sx={{
+                    lineHeight: "120%",
+                    color: "#777777",
+                  }}
+                  variant="h6"
+                >
+                  ABOUT
+                </SemiboldText>
+                I am a developer based in Guwahati, India, with a specialization
+                in building exceptional digital experiences on the web. My
+                current focus revolves around crafting remarkable products at
+                Ellenox.
+              </RegularText>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                component={motion.div}
+                variants={entryVariant}
               >
-                <motion.div
-                  initial={{ y: "-100%" }}
-                  animate={{
-                    y: ["-100%", "0%", "5%", "-5%", "100%"],
-                    transition: {
-                      duration: 1.3,
-                      repeat: "infinity",
-                    },
+                <SemiboldText sx={{ color: "#777777" }} variant="h6">
+                  Scroll Down
+                </SemiboldText>
+                <IconButton
+                  sx={{
+                    height: "40px",
+                    width: "40px",
+                    overflow: "hidden",
                   }}
                 >
-                  <ArrowDownward sx={{ color: "#777777", fontSize: "30px" }} />
-                </motion.div>
-              </IconButton>
+                  <motion.div
+                    initial={{ y: "-100%" }}
+                    animate={{
+                      y: ["-100%", "0%", "5%", "-5%", "100%"],
+                      transition: {
+                        duration: 1.3,
+                        repeat: "infinity",
+                      },
+                    }}
+                  >
+                    <ArrowDownward
+                      sx={{ color: "#777777", fontSize: "30px" }}
+                    />
+                  </motion.div>
+                </IconButton>
+              </Stack>
             </Stack>
-          </Stack>
-        </Stack>
+          </Stack>{" "}
+        </ParallaxText>
       </Stack>
     </Stack>
   );
 };
 
-export default index;
+export default HeroSection;
+const styles = {
+  titleStyle: {
+    fontSize: "22vw",
+    lineHeight: "85%",
+    letterSpacing: { lg: "-5px", xl: "-10px" },
+    ml: "-10px",
+  },
+};

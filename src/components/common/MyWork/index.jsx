@@ -1,124 +1,118 @@
-// import {
-//   AnimatePresence,
-//   useInView,
-//   useScroll,
-//   useTransform,
-// } from "framer-motion";
-// import React, { useEffect, useRef, useState } from "react";
-// import { motion } from "framer-motion";
-// import { Stack } from "@mui/material";
-// import { BoldText } from "../../styles/fonts";
-// import { constants } from "../../../constants";
-// const MyWork = () => {
-//   const { scrollYProgress } = useScroll();
-//   const translateHeader = useTransform(scrollYProgress, [0, 1], [-900, -300]);
-//   const { scrollYProgress: scrollYProgress2 } = useScroll({});
-//   const workY = useTransform(scrollYProgress2, [0, 1], ["-100%", "0%"]);
-//   const projectY = useTransform(scrollYProgress2, [0, 1], ["500%", "-10%"]);
-//   const scaleProject = useTransform(scrollYProgress2, [0, 0.5, 1], [0, 0.5, 1]);
-//   const headerText = new Array(100).fill("MY WORK.").map((item, i) => item);
-//   const titleText = `MYWORK`.split("");
-//   const titleRef = useRef();
-//   const workRef = useRef();
-//   const inView = useInView(titleRef);
-//   const renderWork = (height, width, left, top, delay) => {
-//     return (
-//       <Stack
-//         sx={{
-//           bgcolor: "#fff",
-//           height,
-//           width,
-//           position: "absolute",
-//           left,
-//           top,
-//         }}
-//         component={motion.div}
-//         style={{
-//           y: projectY,
-//           x: workY,
-//           scale: scaleProject,
-//           opacity: scaleProject,
-//         }}
-//       ></Stack>
-//     );
-//   };
-//   return (
-//     <Stack
-//       sx={{
-//         bgcolor: "#000",
-//         width: "100%",
-//         overflowX: "hidden",
-//         minHeight: "100vh",
-//       }}
-//     >
-//       <Stack
-//         direction="row"
-//         width="100%"
-//         component={motion.div}
-//         style={{ x: translateHeader }}
-//         animate={{
-//           stiffness: 500,
-//         }}
-//       >
-//         {headerText.map((item, i) => (
-//           <BoldText
-//             key={i}
-//             sx={{
-//               color: i % 2 === 0 ? "#8559e9" : "#ffffe3",
-//               fontSize: "32px",
-//             }}
-//             component={motion.div}
-//           >
-//             {item}
-//           </BoldText>
-//         ))}
-//       </Stack>
-//       <Stack
-//         sx={{ bgcolor: "#000" }}
-//         alignItems="center"
-//         justifyContent="center"
-//         position="relative"
-//         height="100vh"
-//         overflow="hidden"
-//       >
-//         {renderWork(300, 200, "10%", "10%", 0.2)}
-//         {renderWork(250, 180, "80%", "30%", 0.4)}
-//         {renderWork(250, 180, "30%", "70%", 0.3)}
+import { Box, Button, Stack } from "@mui/material";
+import Spline from "@splinetool/react-spline";
+import React, { useRef, useState } from "react";
+import { HeadingText, MediumText } from "../../styles/fonts";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useScroll,
+  useSpring,
+  useTransform,
+  useVelocity,
+} from "framer-motion";
+import { constants } from "../../../constants";
+import Images from "../../../assets";
+const niyasa = `https://prod.spline.design/CU1Kx8z0auNpWthe/scene.splinecode`;
+const why = `https://prod.spline.design/l7mpeh5NjFiAHjaw/scene.splinecode`;
 
-//         <Stack
-//           direction="row"
-//           component={motion.div}
-//           ref={titleRef}
-//           height="12vw"
-//           overflow="hidden"
-//         >
-//           <AnimatePresence>
-//             {inView &&
-//               titleText.map((item, i) => (
-//                 <BoldText
-//                   sx={{
-//                     color: i % 2 === 0 ? "#8559e9" : "#ffffe3",
-//                     fontSize: "10vw",
-//                   }}
-//                   key={i}
-//                   component={motion.div}
-//                   initial={{ y: 300 }}
-//                   animate={{
-//                     y: 0,
-//                     transition: {
-//                       delay: i * 0.07,
-//                       ...constants["transitions"],
-//                     },
-//                   }}
-//                 >
-//                   {item}
-//                 </BoldText>
-//               ))}
-//           </AnimatePresence>
-//         </Stack>
-//       </Stack>
-//     </Stack>
-//   );
-// };
+const titleContainerVariant = {
+  hidden: {
+    opacity: 0,
+    y: 100,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    delay: 0.5,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.2,
+    },
+  },
+};
+const titleVariants = {
+  hidden: { opacity: 0, y: 200 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ...constants[`transitions`],
+    },
+  },
+};
+const MyWork = () => {
+  const { scrollY } = useScroll();
 
-// export default MyWork;
+  const springRotator = useSpring(scrollY, {
+    stiffness: 50,
+    damping: 30,
+  });
+  const rotateStar = useTransform(springRotator, [0, 1000], [0, 1000]);
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+  const [project, setProject] = useState(niyasa);
+  const title = `MY JOBS`.split("");
+  console.log(isInView);
+  return (
+    <Stack height="100vh" mx={"32px"} ref={ref}>
+      {/* <Button onClick={() => setProject(why)}>WHY</Button>
+            <Button onClick={() => setProject(niyasa)}>Niyasa</Button>
+            <Stack>
+                <Spline scene={project} />
+            </Stack> */}
+
+      <AnimatePresence>
+        {isInView && (
+          <Stack
+            direction="row"
+            component={motion.div}
+            initial="hidden"
+            animate="visible"
+            alignItems="flex-start"
+            variants={titleContainerVariant}
+            justifyContent={"space-between"}
+          >
+            <Stack
+              direction="row"
+              component={motion.div}
+              variants={titleVariants}
+              height={"13vw"}
+              overflow="hidden"
+            >
+              {title.map((item, i) => {
+                return (
+                  <motion.div key={i}>
+                    <HeadingText sx={{ fontSize: "14vw", lineHeight: "85%" }}>
+                      {item}
+                    </HeadingText>
+                  </motion.div>
+                );
+              })}
+            </Stack>
+
+            <motion.img
+              variants={titleVariants}
+              src={Images.StarSvg}
+              style={{ rotate: rotateStar, width: "100px", margin: "10px 1em" }}
+            />
+            <Stack
+              direction="row"
+              component={motion.div}
+              variants={titleVariants}
+              width="40%"
+            >
+              <MediumText variant="h3">
+                Explore some of the exciting projects I've worked on throughout
+                my career.
+              </MediumText>
+            </Stack>
+          </Stack>
+        )}
+      </AnimatePresence>
+    </Stack>
+  );
+};
+
+export default MyWork;

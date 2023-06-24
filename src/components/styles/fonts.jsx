@@ -1,7 +1,7 @@
 import { Typography, styled } from "@mui/material";
 
 export const RegularText = styled(Typography)({
-  fontFamily: `'Nunito', sans-serif`,
+  fontFamily: `'Nunito', sans-serif !important`,
   fontWeight: 400,
 });
 
