@@ -59,10 +59,16 @@ const MyWork = () => {
     stiffness: 50,
     damping: 30,
   });
+  // ===============parent scroll==================//
   const backgroundY = useTransform(springScroll, [0, 1], ["0%", "100%"]);
-  const framesY = useTransform(springScroll, [0, 1], ["0%", "-100%"]);
-  const framesTwoY = useTransform(springScroll, [0, 1], ["0%", "-300%"]);
-  const framesThreeY = useTransform(springScroll, [0, 1], ["0%", "-400%"]);
+  // ===============frames scroll ================== //
+  const framesY = useTransform(springScroll, [0, 1], ["0%", "-200%"]);
+  const framesTwoY = useTransform(springScroll, [0, 1], ["-10%", "-270%"]);
+  const framesThreeY = useTransform(springScroll, [0, 1], ["-20%", "-300%"]);
+  // ===============frame scale================== //
+  const framesScale = useTransform(springScroll, [0, 1], [0.8, 1.2]);
+  const framesTwoScale = useTransform(springScroll, [0, 1], [0.6, 1.2]);
+  const framesThreeScale = useTransform(springScroll, [0, 1], [0.4, 1.2]);
   // ==========X==================//
   const controls = useAnimation();
 
@@ -73,7 +79,7 @@ const MyWork = () => {
     }
   }, [controls, isInViewProject]);
   return (
-    <Stack minHeight="100vh" ref={containerRef}>
+    <Stack height="150vh" overflow='hidden' ref={containerRef}>
       <Stack
         ref={headingRef}
         minHeight="50vh"
@@ -95,13 +101,23 @@ const MyWork = () => {
             <Spline scene={project.spline} onLoad={() => completeLoading()} />
           </Stack>
        </Stack> */}
-      <Stack component={motion.div} style={{ y: framesY }} mt={"64px"}>
+      <Stack
+        component={motion.div}
+        style={{ y: framesY, scale: framesScale }}
+        mt={"64px"}
+      >
         <FrameOne color="#d6fb41" />
       </Stack>
-      <Stack component={motion.div} style={{ y: framesTwoY }}>
+      <Stack
+        component={motion.div}
+        style={{ y: framesTwoY, scale: framesTwoScale }}
+      >
         <FrameOne color="#e3ff73" />
       </Stack>
-      <Stack component={motion.div} style={{ y: framesThreeY }}>
+      <Stack
+        component={motion.div}
+        style={{ y: framesThreeY, scale: framesThreeScale }}
+      >
         <FrameOne color="#ffffff" />
       </Stack>
     </Stack>
