@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Stack, Tooltip } from "@mui/material";
 import Spline from "@splinetool/react-spline";
 import React, { useRef, useState } from "react";
 import { HeadingText, MediumText } from "../../styles/fonts";
@@ -9,7 +9,6 @@ import {
   useScroll,
   useSpring,
   useTransform,
-  useVelocity,
 } from "framer-motion";
 import { constants } from "../../../constants";
 import Images from "../../../assets";
@@ -24,10 +23,10 @@ const titleContainerVariant = {
   visible: {
     opacity: 1,
     y: 0,
-    delay: 0.5,
     transition: {
+      delay: 0.2,
       duration: 0.5,
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
     },
   },
 };
@@ -42,7 +41,7 @@ const titleVariants = {
     },
   },
 };
-const MyWork = () => {
+const Heading = () => {
   const { scrollY } = useScroll();
 
   const springRotator = useSpring(scrollY, {
@@ -51,26 +50,19 @@ const MyWork = () => {
   });
   const rotateStar = useTransform(springRotator, [0, 1000], [0, 1000]);
   const ref = useRef(null);
-  const isInView = useInView(ref);
-  const [project, setProject] = useState(niyasa);
-  const title = `MY JOBS`.split("");
-  console.log(isInView);
-  return (
-    <Stack height="100vh" mx={"32px"} ref={ref}>
-      {/* <Button onClick={() => setProject(why)}>WHY</Button>
-            <Button onClick={() => setProject(niyasa)}>Niyasa</Button>
-            <Stack>
-                <Spline scene={project} />
-            </Stack> */}
+  const isInView = useInView(ref, { once: true });
 
+  const title = `MY JOBS`.split("");
+  return (
+    <Stack mx={"32px"} ref={ref}>
       <AnimatePresence>
         {isInView && (
           <Stack
-            direction="row"
+            direction={{ xs: "column", lg: "row" }}
             component={motion.div}
             initial="hidden"
             animate="visible"
-            alignItems="flex-start"
+            alignItems={{ xs: "center", lg: "flex-start" }}
             variants={titleContainerVariant}
             justifyContent={"space-between"}
           >
@@ -84,27 +76,73 @@ const MyWork = () => {
               {title.map((item, i) => {
                 return (
                   <motion.div key={i}>
-                    <HeadingText sx={{ fontSize: "14vw", lineHeight: "85%" }}>
+                    <HeadingText sx={{ fontSize: "10vw", lineHeight: "85%" }}>
                       {item}
                     </HeadingText>
                   </motion.div>
                 );
               })}
             </Stack>
-
-            <motion.img
-              variants={titleVariants}
-              src={Images.StarSvg}
-              style={{ rotate: rotateStar, width: "100px", margin: "10px 1em" }}
-            />
+            <Stack direction="row">
+              <motion.img
+                variants={titleVariants}
+                src={Images.StarSvg}
+                style={{
+                  rotate: rotateStar,
+                  width: "50px",
+                  margin: "10px 1em",
+                }}
+              />
+              <motion.img
+                variants={titleVariants}
+                src={Images.StarSvg}
+                style={{
+                  rotate: rotateStar,
+                  width: "100px",
+                  margin: "10px 1em",
+                }}
+              />
+              <motion.img
+                variants={titleVariants}
+                src={Images.StarSvg}
+                style={{
+                  rotate: rotateStar,
+                  width: "50px",
+                  margin: "10px 1em",
+                }}
+              />
+            </Stack>
             <Stack
-              direction="row"
               component={motion.div}
-              variants={titleVariants}
-              width="40%"
+              width={{ xs: "100%", lg: "38%", xl: "28%" }}
+              textAlign={{ xs: "center", lg: "left" }}
             >
-              <MediumText variant="h3">
-                Explore some of the exciting projects I've worked on throughout
+              <MediumText
+                variant="h3"
+                variants={titleVariants}
+                component={motion.div}
+              >
+                Explore some of the
+              </MediumText>
+              <MediumText
+                variant="h3"
+                variants={titleVariants}
+                component={motion.div}
+              >
+                exciting projects I've
+              </MediumText>
+              <MediumText
+                variant="h3"
+                variants={titleVariants}
+                component={motion.div}
+              >
+                worked on throughout
+              </MediumText>
+              <MediumText
+                variant="h3"
+                variants={titleVariants}
+                component={motion.div}
+              >
                 my career.
               </MediumText>
             </Stack>
@@ -112,6 +150,68 @@ const MyWork = () => {
         )}
       </AnimatePresence>
     </Stack>
+  );
+};
+const MyWork = () => {
+  const projectsArray = [
+    {
+      name: "Niyasa Global",
+      spline: niyasa,
+      description:
+        "Explore endless opportunities for studying abroad and visa services at Niyasa Global. Expert guidance, visa assistance, and valuable resources. Unlock a world of possibilities today!",
+      link: `https://eduniyasa.in/`,
+      type: "web",
+    },
+    {
+      name: "WHY Emotional Support &Therapy",
+      spline: why,
+      description:
+        "Get the understanding and guidance you need to navigate life's challenges, anytime, anywhere. Find solace, healing, and empowerment with WHY.",
+      link: `https://play.google.com/store/apps/details?id=com.wehearyou&hl=en-IN`,
+      type: "app",
+    },
+  ];
+  const projectsRef = useRef(null);
+  const isInViewProjects = useInView(projectsRef, { once: true });
+  const [project, setProject] = useState(projectsArray[0]);
+  const { scrollY } = useScroll();
+  const arrowSpringRotation = useSpring(scrollY, {
+    stiffness: 100,
+    damping: 30,
+  });
+  const arrowRightRotation = useTransform(
+    arrowSpringRotation,
+    [0, 1000],
+    [180, 0]
+  );
+  const arrowLeftRotation = useTransform(
+    arrowSpringRotation,
+    [0, 1000],
+    [180, 0]
+  );
+  const nextProject = () => {
+    if (project.name === projectsArray[projectsArray.length - 1].name) {
+      setProject(projectsArray[0]);
+      return;
+    }
+
+    setProject(projectsArray[1]);
+  };
+  return (
+    <>
+      <Heading />
+      <Stack ref={projectsRef} minHeight="80vh" sx={{ position: "relative" }}>
+        <AnimatePresence>
+          {isInViewProjects && (
+            <Stack>
+              <Stack>
+                <Spline scene={project.spline} />
+              </Stack>
+            </Stack>
+          )}
+        </AnimatePresence>
+      </Stack>
+    </>
   );
 };
 
