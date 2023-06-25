@@ -5,12 +5,11 @@ import { ThemeProvider } from "@emotion/react";
 import { createTheme, responsiveFontSizes } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
-import { ScrollerMotion } from "scroller-motion";
-import AppContext from "./context/AppContext";
+ import AppContext from "./context/AppContext";
 import Loader from "./components/common/Loader";
 
 function App() {
-  const [appLoading, setAppLoading] = useState(false);
+  const [appLoading, setAppLoading] = useState(true);
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const completeLoading = () => {

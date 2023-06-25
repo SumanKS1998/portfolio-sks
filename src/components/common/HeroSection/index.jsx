@@ -32,15 +32,12 @@ const HeroSection = () => {
           return (
             <motion.div
               key={i}
-              drag
-              dragConstraints={{ left: 0, right: 0, bottom: 0, top: 0 }}
-              // ===============BELOW ARE THE ANIMATIONS WHEN THE PAGE RENDERS============================//
               onAnimationComplete={() => {
                 setFirstAnimationOver(true);
               }}
               whileHover={{
                 scale: 1.02,
-                color: ["#ffffe3", "#fe8563", "#ff5858"],
+                color: ["#ffffe3", "#d6fb41"],
               }}
               initial={{ opacity: 0, y: 400 }}
               animate={{
@@ -122,8 +119,8 @@ const HeroSection = () => {
             }}
             component={motion.div}
             whileHover={{
-              backgroundColor: "#ff5858",
-              borderColor: "#ff5858",
+              backgroundColor: "#d6fb41",
+              borderColor: "#d6fb41",
               scale: [1, 1.1, 1],
               transition: {
                 duration: 0.2,
@@ -165,6 +162,7 @@ const HeroSection = () => {
                   onAnimationComplete={(e) =>
                     e.y === "-200%" && setShowBtnText(true)
                   }
+                  sx={{ color: "#111111" }}
                 >
                   Contact
                 </SemiboldText>
