@@ -22,54 +22,17 @@ import AppContext from "../../../context/AppContext";
 import Spline from "@splinetool/react-spline";
 import Heading from "./Heading";
 import FrameOne from "./Frames/FrameOne";
-const niyasa = `https://prod.spline.design/CU1Kx8z0auNpWthe/scene.splinecode`;
-const why = `https://prod.spline.design/l7mpeh5NjFiAHjaw/scene.splinecode`;
+import { ScrollerMotion } from "scroller-motion";
 
-const projectsArray = [
-  {
-    name: "Niyasa Global",
-    spline: niyasa,
-    description:
-      "Explore endless opportunities for studying abroad and visa services at Niyasa Global. Expert guidance, visa assistance, and valuable resources. Unlock a world of possibilities today!",
-    link: `https://eduniyasa.in/`,
-    type: "web",
-  },
-  {
-    name: "WHY Emotional Support &Therapy",
-    spline: why,
-    description:
-      "Get the understanding and guidance you need to navigate life's challenges, anytime, anywhere. Find solace, healing, and empowerment with WHY.",
-    link: `https://play.google.com/store/apps/details?id=com.wehearyou&hl=en-IN`,
-    type: "app",
-  },
-];
 const MyWork = () => {
   const { completeLoading } = useContext(AppContext);
-  const containerRef = useRef(null);
   const projectsRef = useRef(null);
   const headingRef = useRef(null);
   const isInViewHeading = useInView(headingRef, { once: true });
   const isInViewProject = useInView(projectsRef, { once: true });
-  const [project, setProject] = useState(projectsArray[0]);
-  const { scrollY, scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-  const springScroll = useSpring(scrollYProgress, {
-    stiffness: 50,
-    damping: 30,
-  });
-  // ===============parent scroll==================//
-  const backgroundY = useTransform(springScroll, [0, 1], ["0%", "100%"]);
-  // ===============frames scroll ================== //
-  const framesY = useTransform(springScroll, [0, 1], ["0%", "-200%"]);
-  const framesTwoY = useTransform(springScroll, [0, 1], ["-10%", "-270%"]);
-  const framesThreeY = useTransform(springScroll, [0, 1], ["-20%", "-300%"]);
-  // ===============frame scale================== //
-  const framesScale = useTransform(springScroll, [0, 1], [0.8, 1.2]);
-  const framesTwoScale = useTransform(springScroll, [0, 1], [0.6, 1.2]);
-  const framesThreeScale = useTransform(springScroll, [0, 1], [0.4, 1.2]);
-  // ==========X==================//
+  const [project, setProject] = useState(constants[`projectsArray`][0]);
+  const { scrollY } = useScroll();
+
   const controls = useAnimation();
 
   useEffect(() => {
@@ -79,49 +42,60 @@ const MyWork = () => {
     }
   }, [controls, isInViewProject]);
   return (
-    <Stack height="150vh" overflow='hidden' ref={containerRef}>
+    <Stack sx={{ position: "relative" }}>
       <Stack
         ref={headingRef}
         minHeight="50vh"
         component={motion.div}
-        style={{ y: backgroundY }}
+        sx={{ position: "sticky", top: "0px", zIndex: 1 }}
       >
         <AnimatePresence>
           {isInViewHeading && <Heading scrollY={scrollY} />}
         </AnimatePresence>
       </Stack>
-      {/* <Stack minHeight="80vh" sx={{ position: "relative" }}>
-           <Stack
-            component={motion.div}
-            variants={projectVariant}
-            initial="hidden"
-            animate={controls}
-            ref={projectsRef}
-          >
-            <Spline scene={project.spline} onLoad={() => completeLoading()} />
-          </Stack>
-       </Stack> */}
+
       <Stack
         component={motion.div}
-        style={{ y: framesY, scale: framesScale }}
-        mt={"64px"}
+        mt="64px"
+        sx={{ position: "sticky", top: 0, zIndex: 2 }}
       >
         <FrameOne color="#d6fb41" />
       </Stack>
       <Stack
         component={motion.div}
-        style={{ y: framesTwoY, scale: framesTwoScale }}
+        sx={{ position: "sticky", top: "100px", zIndex: 3 }}
       >
         <FrameOne color="#e3ff73" />
       </Stack>
       <Stack
         component={motion.div}
-        style={{ y: framesThreeY, scale: framesThreeScale }}
+        sx={{
+          position: "sticky",
+          top: "200px",
+          zIndex: 4,
+          bgcolor: "#f1ffb9",
+          borderRadius: "5em 5em 0 0 ",
+          background: `linear-gradient(180deg, rgba(241,255,185,1) 0%, rgba(255,255,255,1) 81%)`,
+        }}
       >
-        <FrameOne color="#ffffff" />
+        <FrameOne color="transparent" />
       </Stack>
     </Stack>
   );
 };
 
 export default MyWork;
+
+{
+  /* <Stack minHeight="80vh" sx={{ position: "relative" }}>
+             <Stack
+              component={motion.div}
+              variants={projectVariant}
+              initial="hidden"
+              animate={controls}
+              ref={projectsRef}
+            >
+              <Spline scene={project.spline} onLoad={() => completeLoading()} />
+            </Stack>
+         </Stack> */
+}

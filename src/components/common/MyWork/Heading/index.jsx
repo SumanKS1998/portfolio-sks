@@ -47,7 +47,7 @@ const Heading = ({ scrollY }) => {
   const ref = useRef(null);
   const title = `MY\u00a0 WORK`.split("");
   return (
-    <Stack sx={{ position: "relative", zIndex: 2 }} mx="32px">
+    <Stack sx={{ position: "relative" }} mx="32px">
       <Stack
         direction={"column"}
         component={motion.div}

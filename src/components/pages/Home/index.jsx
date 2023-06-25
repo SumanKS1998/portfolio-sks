@@ -4,17 +4,18 @@ import { Stack } from "@mui/material";
 import About from "../../common/About";
 import { useScroll } from "framer-motion";
 import MyWork from "../../common/MyWork";
+import TechStack from "../../common/TechStack";
 const Home = () => {
   return (
     <Stack
       width="100vw"
       sx={{
-        overflowX: "hidden !important",
-        bgcolor: "#111111",
+         bgcolor: "#111111",
       }}
     >
       <HeroSection />
       <MyWork />
+      <TechStack />
     </Stack>
   );
 };
