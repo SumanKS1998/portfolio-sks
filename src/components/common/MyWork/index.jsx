@@ -6,15 +6,12 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { HeadingText, MediumText } from "../../styles/fonts";
 import {
   AnimatePresence,
   motion,
   useAnimation,
   useInView,
   useScroll,
-  useSpring,
-  useTransform,
 } from "framer-motion";
 import { constants } from "../../../constants";
 import Images from "../../../assets";
@@ -22,7 +19,8 @@ import AppContext from "../../../context/AppContext";
 import Spline from "@splinetool/react-spline";
 import Heading from "./Heading";
 import FrameOne from "./Frames/FrameOne";
-import { ScrollerMotion } from "scroller-motion";
+import { BoldText, HeadingText } from "../../styles/fonts";
+import { ParallaxText } from "../ParallaxText";
 
 const MyWork = () => {
   const { completeLoading } = useContext(AppContext);
@@ -59,7 +57,41 @@ const MyWork = () => {
         mt="64px"
         sx={{ position: "sticky", top: 0, zIndex: 2 }}
       >
-        <FrameOne color="#d6fb41" />
+        <FrameOne color="#d6fb41">
+          <Stack
+            direction="row"
+            sx={{
+              position: "absolute",
+              top: "10px",
+              transform: `translateY('-50px')`,
+              left: 0,
+              right: 0,
+            }}
+          >
+            <ParallaxText>
+              <HeadingText
+                alignItems="center"
+                direction="row"
+                component={Stack}
+                sx={{ color: "#111111" }}
+                variant="h3"
+              >
+                Niyasa Global{" "}
+                <img src={Images.StarSvg} style={{ width: "30px" }} /> Study
+                Abroad
+              </HeadingText>
+            </ParallaxText>
+          </Stack>
+          <Stack
+            minHeight="100vh"
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Stack width="max-content" height="max-content">
+              <Spline scene={project.spline} onLoad={() => completeLoading()} />
+            </Stack>
+          </Stack>
+        </FrameOne>
       </Stack>
       <Stack
         component={motion.div}
@@ -85,17 +117,3 @@ const MyWork = () => {
 };
 
 export default MyWork;
-
-{
-  /* <Stack minHeight="80vh" sx={{ position: "relative" }}>
-             <Stack
-              component={motion.div}
-              variants={projectVariant}
-              initial="hidden"
-              animate={controls}
-              ref={projectsRef}
-            >
-              <Spline scene={project.spline} onLoad={() => completeLoading()} />
-            </Stack>
-         </Stack> */
-}
