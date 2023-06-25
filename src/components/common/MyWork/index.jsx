@@ -10,6 +10,7 @@ import {
   AnimatePresence,
   motion,
   useAnimation,
+  useAnimationControls,
   useInView,
   useScroll,
 } from "framer-motion";
@@ -24,21 +25,115 @@ import { ParallaxText } from "../ParallaxText";
 
 const MyWork = () => {
   const { completeLoading } = useContext(AppContext);
-  const projectsRef = useRef(null);
+  const projectRefOne = useRef(null);
   const headingRef = useRef(null);
   const isInViewHeading = useInView(headingRef, { once: true });
-  const isInViewProject = useInView(projectsRef, { once: true });
+  const isInViewProject = useInView(projectRefOne);
   const [project, setProject] = useState(constants[`projectsArray`][0]);
   const { scrollY } = useScroll();
-
-  const controls = useAnimation();
+  console.log(isInViewProject);
+  const controls = useAnimationControls();
 
   useEffect(() => {
     if (isInViewProject) {
-      console.log(isInViewProject);
+      console.log(isInViewProject, "asdasdasd");
       controls.start("visible");
+    } else {
+      controls.start("hidden");
     }
   }, [controls, isInViewProject]);
+  const chipContainerVariant = {
+    hidden: {
+      opacity: 1,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  const chipVariant = {
+    hidden: {
+      rotate: 0,
+      y: 200,
+      opacity: 0,
+      scale: 0.7,
+    },
+    visible: {
+      opacity: 1,
+      rotate: 25,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        type: "spring",
+       },
+    },
+  };
+  const chipBelowVariant = {
+    hidden: {
+      rotate: 0,
+      y: 200,
+      opacity: 0,
+      scale: 0.7,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      rotate: -25,
+      y: 0,
+      transition: {
+        duration: 1,
+        type: "spring",
+      },
+    },
+  };
+  const splineVariant = {
+    hidden: {
+      y: 200,
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        type: "spring",
+        delay:0.5
+      },
+    },
+  };
+  const renderChips = ({ type, text, index, data, bgcolor, color }) => {
+    const animationVariant = index === 1 ? chipVariant : chipBelowVariant;
+    const basicStyles = {
+      py: 1,
+      width: "max-content",
+      px: 10,
+      borderRadius: "100vmax",
+      zIndex: 999,
+      cursor: "pointer",
+      bgcolor,
+    };
+
+    return (
+      <Stack
+        sx={basicStyles}
+        component={motion.div}
+        variants={animationVariant}
+      >
+        <HeadingText
+          variant="h2"
+          component={"a"}
+          href={data.link}
+          target="_blank"
+          sx={{ textDecoration: "none", color: color || "#fff !important" }}
+        >
+          {text}
+        </HeadingText>
+      </Stack>
+    );
+  };
   return (
     <Stack sx={{ position: "relative" }}>
       <Stack
@@ -56,8 +151,26 @@ const MyWork = () => {
         component={motion.div}
         mt="64px"
         sx={{ position: "sticky", top: 0, zIndex: 2 }}
+        variants={chipContainerVariant}
+        initial="hidden"
+        animate={controls}
+        ref={projectRefOne}
       >
         <FrameOne color="#d6fb41">
+        <Stack
+            minHeight="100vh"
+            justifyContent={"center"}
+            alignItems="center"
+          >
+            <Stack
+              width="max-content"
+              height="max-content"
+              component={motion.div}
+              variants={splineVariant}
+            >
+              <Spline scene={project.spline} onLoad={() => completeLoading()} />
+            </Stack>
+          </Stack>
           <Stack
             direction="row"
             sx={{
@@ -83,14 +196,53 @@ const MyWork = () => {
             </ParallaxText>
           </Stack>
           <Stack
-            minHeight="100vh"
-            alignItems={"center"}
-            justifyContent={"center"}
+            sx={{
+              position: "absolute",
+              right: { xs: 0, xl: "10%" },
+              top: "50%",
+              transform: "translateY(-50%)",
+            }}
           >
-            <Stack width="max-content" height="max-content">
-              <Spline scene={project.spline} onLoad={() => completeLoading()} />
-            </Stack>
+            {renderChips({
+              type: "web",
+              text: "Visit Website",
+              index: 1,
+              data: constants[`projectsArray`][0],
+              bgcolor: "#111",
+              color: "#d6fb41",
+            })}
           </Stack>
+          <Stack
+            sx={{
+              position: "absolute",
+              left: { xs: 0, xl: "10%" },
+              top: "50%",
+              transform: "translateY(-50%)",
+            }}
+          >
+            {renderChips({
+              type: "web",
+              text: "React",
+              index: 2,
+              data: { link: "https://react.dev/" },
+              bgcolor: "#5ed3f3",
+            })}
+            {renderChips({
+              type: "web",
+              text: "MUI",
+              index: 1,
+              data: { link: "https://mui.com/" },
+              bgcolor: "#007fff",
+            })}
+            {renderChips({
+              type: "web",
+              text: "Framer Motion",
+              index: 2,
+              data: { link: "https://www.framer.com/motion/" },
+              bgcolor: "#f74aa6",
+            })}
+          </Stack>
+      
         </FrameOne>
       </Stack>
       <Stack

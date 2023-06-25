@@ -69,6 +69,9 @@ export function ParallaxText({ children, direction }) {
         <motion.span style={{ skew: skewVelocityFactor }}>
           {children}
         </motion.span>
+        <motion.span style={{ skew: skewVelocityFactor }}>
+          {children}
+        </motion.span>
       </motion.div>
     </div>
   );

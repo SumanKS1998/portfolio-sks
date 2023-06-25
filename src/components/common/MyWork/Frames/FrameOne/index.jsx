@@ -12,7 +12,7 @@ const FrameOne = ({ color, children }) => {
         borderRadius="5em"
         component={motion.div}
         sx={{ position: "relative" }}
-        width='100vw'
+        width='100%'
         oveflow='hidden'
       >
         {children}
