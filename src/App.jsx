@@ -18,19 +18,17 @@ function App() {
       setAppLoading(false);
     }, 1000);
   };
-   return (
-    <ScrollerMotion>
-      <AppContext.Provider value={{ completeLoading ,appLoading}}>
-        <ThemeProvider theme={theme}>
-          {appLoading && <Loader />}
-          <BrowserRouter>
-            <Routes>
-              <Route element={<Home />} path="/" />
-            </Routes>
-          </BrowserRouter>
-        </ThemeProvider>
-      </AppContext.Provider>
-    </ScrollerMotion>
+  return (
+    <AppContext.Provider value={{ completeLoading, appLoading }}>
+      <ThemeProvider theme={theme}>
+        {appLoading && <Loader />}
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Home />} path="/" />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </AppContext.Provider>
   );
 }
 
