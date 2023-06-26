@@ -13,7 +13,7 @@ const FrameOne = ({ color, children }) => {
         component={motion.div}
         sx={{ position: "relative" }}
         width='100%'
-        oveflow='hidden'
+        overflow='hidden'
       >
         {children}
       </Stack>
