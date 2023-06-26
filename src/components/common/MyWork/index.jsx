@@ -119,21 +119,26 @@ const MyWork = () => {
     };
 
     return (
-      <Stack
-        sx={basicStyles}
-        component={motion.div}
-        variants={animationVariant}
+      <motion.div
+        initial={{ rotate: 0}}
+        whileHover={{ rotate: -animationVariant[`visible`].rotate  }}
       >
-        <HeadingText
-          variant="h2"
-          component={"a"}
-          href={data.link}
-          target="_blank"
-          sx={{ textDecoration: "none", color: color || "#fff !important" }}
+        <Stack
+          sx={basicStyles}
+          component={motion.div}
+          variants={animationVariant}
         >
-          {text}
-        </HeadingText>
-      </Stack>
+          <HeadingText
+            variant="h2"
+            component={"a"}
+            href={data.link}
+            target="_blank"
+            sx={{ textDecoration: "none", color: color || "#fff !important" }}
+          >
+            {text}
+          </HeadingText>
+        </Stack>
+      </motion.div>
     );
   };
   const renderFrames = ({
@@ -147,7 +152,6 @@ const MyWork = () => {
     ref,
     control,
   }) => {
-    
     return (
       <Stack
         component={motion.div}
@@ -219,6 +223,7 @@ const MyWork = () => {
               top: "50%",
               transform: "translateY(-50%)",
             }}
+            gap="25px"
           >
             {tech.map((item, i) => {
               return (
@@ -306,9 +311,8 @@ const MyWork = () => {
           position: "sticky",
           top: "200px",
           zIndex: 4,
-          bgcolor: "#f1ffb9",
+          bgcolor: "#fff",
           borderRadius: "5em 5em 0 0 ",
-          background: `linear-gradient(180deg, rgba(241,255,185,1) 0%, rgba(255,255,255,1) 81%)`,
         }}
       >
         <FrameOne color="transparent" />
