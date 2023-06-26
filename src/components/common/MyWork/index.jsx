@@ -22,90 +22,92 @@ import Heading from "./Heading";
 import FrameOne from "./Frames/FrameOne";
 import { BoldText, HeadingText } from "../../styles/fonts";
 import { ParallaxText } from "../ParallaxText";
-
+const chipContainerVariant = {
+  hidden: {
+    opacity: 1,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+const chipVariant = {
+  hidden: {
+    rotate: 0,
+    y: 200,
+    opacity: 0,
+    scale: 0.7,
+  },
+  visible: {
+    opacity: 1,
+    rotate: 25,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      type: "spring",
+    },
+  },
+};
+const chipBelowVariant = {
+  hidden: {
+    rotate: 0,
+    y: 200,
+    opacity: 0,
+    scale: 0.7,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    rotate: -25,
+    y: 0,
+    transition: {
+      duration: 1,
+      type: "spring",
+    },
+  },
+};
+const splineVariant = {
+  hidden: {
+    y: 200,
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      type: "spring",
+      delay: 0.5,
+    },
+  },
+};
 const MyWork = () => {
   const { completeLoading } = useContext(AppContext);
   const projectRefOne = useRef(null);
+  const projectRefTwo = useRef(null);
   const headingRef = useRef(null);
   const isInViewHeading = useInView(headingRef, { once: true });
   const isInViewProject = useInView(projectRefOne);
+  const isInViewProjectTwo = useInView(projectRefTwo);
   const [project, setProject] = useState(constants[`projectsArray`][0]);
   const { scrollY } = useScroll();
-  console.log(isInViewProject);
   const controls = useAnimationControls();
+  const controlsTwo = useAnimationControls();
 
   useEffect(() => {
     if (isInViewProject) {
-      console.log(isInViewProject, "asdasdasd");
       controls.start("visible");
-    } else {
-      controls.start("hidden");
     }
-  }, [controls, isInViewProject]);
-  const chipContainerVariant = {
-    hidden: {
-      opacity: 1,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-  const chipVariant = {
-    hidden: {
-      rotate: 0,
-      y: 200,
-      opacity: 0,
-      scale: 0.7,
-    },
-    visible: {
-      opacity: 1,
-      rotate: 25,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        type: "spring",
-       },
-    },
-  };
-  const chipBelowVariant = {
-    hidden: {
-      rotate: 0,
-      y: 200,
-      opacity: 0,
-      scale: 0.7,
-    },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      rotate: -25,
-      y: 0,
-      transition: {
-        duration: 1,
-        type: "spring",
-      },
-    },
-  };
-  const splineVariant = {
-    hidden: {
-      y: 200,
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        type: "spring",
-        delay:0.5
-      },
-    },
-  };
+    if (isInViewProjectTwo) {
+      controlsTwo.start("visible");
+    }
+  }, [controls, isInViewProject, isInViewProjectTwo]);
+
   const renderChips = ({ type, text, index, data, bgcolor, color }) => {
-    const animationVariant = index === 1 ? chipVariant : chipBelowVariant;
+    const animationVariant = index % 2 !== 0 ? chipVariant : chipBelowVariant;
     const basicStyles = {
       py: 1,
       width: "max-content",
@@ -134,30 +136,30 @@ const MyWork = () => {
       </Stack>
     );
   };
-  return (
-    <Stack sx={{ position: "relative" }}>
-      <Stack
-        ref={headingRef}
-        minHeight="50vh"
-        component={motion.div}
-        sx={{ position: "sticky", top: "0px", zIndex: 1 }}
-      >
-        <AnimatePresence>
-          {isInViewHeading && <Heading scrollY={scrollY} />}
-        </AnimatePresence>
-      </Stack>
-
+  const renderFrames = ({
+    zIndex,
+    bgcolor,
+    top,
+    marqueeText,
+    project,
+    tech,
+    parallaxDirection,
+    ref,
+    control,
+  }) => {
+    
+    return (
       <Stack
         component={motion.div}
         mt="64px"
-        sx={{ position: "sticky", top: 0, zIndex: 2 }}
+        sx={{ position: "sticky", top, zIndex }}
         variants={chipContainerVariant}
         initial="hidden"
-        animate={controls}
-        ref={projectRefOne}
+        animate={control}
+        overflow="hidden"
       >
-        <FrameOne color="#d6fb41">
-        <Stack
+        <FrameOne color={bgcolor}>
+          <Stack
             minHeight="100vh"
             justifyContent={"center"}
             alignItems="center"
@@ -167,6 +169,7 @@ const MyWork = () => {
               height="max-content"
               component={motion.div}
               variants={splineVariant}
+              ref={ref}
             >
               <Spline scene={project.spline} onLoad={() => completeLoading()} />
             </Stack>
@@ -181,17 +184,15 @@ const MyWork = () => {
               right: 0,
             }}
           >
-            <ParallaxText>
+            <ParallaxText direction={parallaxDirection}>
               <HeadingText
                 alignItems="center"
                 direction="row"
                 component={Stack}
-                sx={{ color: "#111111" }}
+                sx={{ color: "#737373" }}
                 variant="h3"
               >
-                Niyasa Global{" "}
-                <img src={Images.StarSvg} style={{ width: "30px" }} /> Study
-                Abroad
+                {marqueeText}
               </HeadingText>
             </ParallaxText>
           </Stack>
@@ -204,12 +205,11 @@ const MyWork = () => {
             }}
           >
             {renderChips({
-              type: "web",
               text: "Visit Website",
               index: 1,
-              data: constants[`projectsArray`][0],
+              data: { link: project.link },
               bgcolor: "#111",
-              color: "#d6fb41",
+              color: bgcolor,
             })}
           </Stack>
           <Stack
@@ -220,37 +220,86 @@ const MyWork = () => {
               transform: "translateY(-50%)",
             }}
           >
-            {renderChips({
-              type: "web",
-              text: "React",
-              index: 2,
-              data: { link: "https://react.dev/" },
-              bgcolor: "#5ed3f3",
-            })}
-            {renderChips({
-              type: "web",
-              text: "MUI",
-              index: 1,
-              data: { link: "https://mui.com/" },
-              bgcolor: "#007fff",
-            })}
-            {renderChips({
-              type: "web",
-              text: "Framer Motion",
-              index: 2,
-              data: { link: "https://www.framer.com/motion/" },
-              bgcolor: "#f74aa6",
+            {tech.map((item, i) => {
+              return (
+                <>
+                  {renderChips({
+                    text: item.name,
+                    index: i,
+                    data: { link: item.link },
+                    bgcolor: item.bgcolor,
+                  })}
+                </>
+              );
             })}
           </Stack>
-      
         </FrameOne>
       </Stack>
+    );
+  };
+  return (
+    <Stack sx={{ position: "relative" }}>
       <Stack
+        ref={headingRef}
+        minHeight="50vh"
         component={motion.div}
-        sx={{ position: "sticky", top: "100px", zIndex: 3 }}
+        sx={{ position: "sticky", top: "0px", zIndex: 1 }}
       >
-        <FrameOne color="#e3ff73" />
+        <AnimatePresence>
+          {isInViewHeading && <Heading scrollY={scrollY} />}
+        </AnimatePresence>
       </Stack>
+
+      {renderFrames({
+        zIndex: 2,
+        bgcolor: "#d6fb41",
+        top: 0,
+        marqueeText: "Niyasa Global 🌍 Study Abroad",
+        parallaxDirection: true,
+        project: constants[`projectsArray`][0],
+        tech: [
+          {
+            name: "React",
+            link: "https://react.dev/",
+            bgcolor: "#5ed3f3",
+          },
+          {
+            name: "MUI",
+            link: "https://mui.com/",
+            bgcolor: "#007fff",
+          },
+          {
+            name: "Framer Motion",
+            link: "https://www.framer.com/motion/",
+            bgcolor: "#f74aa6",
+          },
+        ],
+        ref: projectRefOne,
+        control: controls,
+      })}
+      {renderFrames({
+        zIndex: 3,
+        bgcolor: "#e3ff73",
+        top: "100px",
+        marqueeText: "WHY 🧘🏻 Emotional Support &Therapy",
+        parallaxDirection: false,
+        project: constants[`projectsArray`][1],
+        tech: [
+          {
+            name: "React Native",
+            link: "https://reactnative.dev/",
+            bgcolor: "#5ed3f3",
+          },
+          {
+            name: "Firebase",
+            link: "https://firebase.google.com/",
+            bgcolor: "#fea613",
+          },
+        ],
+        ref: projectRefTwo,
+        control: controlsTwo,
+      })}
+
       <Stack
         component={motion.div}
         sx={{
