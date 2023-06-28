@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import { motion, useAnimationControls } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
-import { HeadingText, LoaderText } from "../../styles/fonts";
+import { HeadingText,   } from "../../styles/fonts";
 import { constants } from "../../../constants";
 import AppContext from "../../../context/AppContext";
 
@@ -15,13 +15,13 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
       scale: 0.4,
     },
     visible: {
-      scale: 300,
-      x: "-300%",
-      transition: { ease: constants[`transitions`], duration: 2 },
+      scale: 200,
+      x: "-200%",
+      transition: { ease: constants[`transitions`], duration: 1},
     },
   };
   useEffect(() => {
-    if (!appLoading.projectOne) {
+    if (!appLoading.projectOne && loadingSplines < 50) {
       setLoadingSplines(50);
     }
     if (!appLoading.projectTwo) {
@@ -40,7 +40,8 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
             right: 0,
             left: 0,
             bottom: 0,
-            zIndex: 999,bgcolor:'#ffffe3'
+            zIndex: 999,
+            bgcolor: "#ffffe3",
           }}
           justifyContent="center"
           alignItems="center"
@@ -57,9 +58,13 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
             }}
           >
             {!appLoading.projectOne && !appLoading.projectTwo ? (
-              <HeadingText variant="h1" sx={{color:'#111111'}}>Loaded let's go</HeadingText>
+              <HeadingText variant="h1" sx={{ color: "#111111" }}>
+                Loaded let's go
+              </HeadingText>
             ) : (
-              <HeadingText variant="h1" sx={{color:'#111111'}}>Loading</HeadingText>
+              <HeadingText variant="h1" sx={{ color: "#111111" }}>
+                Loading
+              </HeadingText>
             )}
             <motion.div
               style={{
@@ -84,11 +89,9 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
                   transition: { ease: constants[`transitions`], duration: 1.4 },
                 }}
                 onAnimationComplete={() => {
-                  if (!appLoading.projectTwo) {
-                    setTimeout(() => {
-                      controls.start("visible");
-                    }, 1000);
-                  }
+                  if (loadingSplines===100) {
+                       controls.start("visible");
+                   }
                 }}
               ></motion.div>
             </motion.div>

@@ -8,7 +8,7 @@ const Frame = ({ color, children }) => {
       {" "}
       <Stack
         minHeight="100vh"
-        bgcolor={color || "#e3ff73"}
+        bgcolor={ "#ff6943"}
         borderRadius="5em"
         component={motion.div}
         sx={{ position: "relative" }}
