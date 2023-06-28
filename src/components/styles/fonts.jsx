@@ -23,3 +23,7 @@ export const HeadingText = styled(Typography)({
   fontFamily: `'Bebas Neue', sans-serif`,
   fontWeight: 400,
 });
+export const LoaderText = styled(Typography)({
+  fontFamily: `'Chillax', sans-serif`,
+  fontWeight: 700,
+});
