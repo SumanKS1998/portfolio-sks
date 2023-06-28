@@ -19,9 +19,9 @@ import Images from "../../../assets";
 import AppContext from "../../../context/AppContext";
 import Spline from "@splinetool/react-spline";
 import Heading from "./Heading";
-import FrameOne from "./Frames/FrameOne";
-import { BoldText, HeadingText } from "../../styles/fonts";
+ import { BoldText, HeadingText } from "../../styles/fonts";
 import { ParallaxText } from "../ParallaxText";
+import Frame from "./Frames";
 const chipContainerVariant = {
   hidden: {
     opacity: 1,
@@ -85,15 +85,16 @@ const splineVariant = {
   },
 };
 const MyWork = () => {
-  const { completeLoading } = useContext(AppContext);
+  const { completeFirstProjectLoading, completeSecondProjectLoading } =
+    useContext(AppContext);
   const projectRefOne = useRef(null);
   const projectRefTwo = useRef(null);
   const headingRef = useRef(null);
   const isInViewHeading = useInView(headingRef, { once: true });
   const isInViewProject = useInView(projectRefOne);
   const isInViewProjectTwo = useInView(projectRefTwo);
-  const [project, setProject] = useState(constants[`projectsArray`][0]);
-  const { scrollY } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
+
   const controls = useAnimationControls();
   const controlsTwo = useAnimationControls();
 
@@ -120,8 +121,8 @@ const MyWork = () => {
 
     return (
       <motion.div
-        initial={{ rotate: 0}}
-        whileHover={{ rotate: -animationVariant[`visible`].rotate  }}
+        initial={{ rotate: 0 }}
+        whileHover={{ rotate: -animationVariant[`visible`].rotate }}
       >
         <Stack
           sx={basicStyles}
@@ -151,6 +152,7 @@ const MyWork = () => {
     parallaxDirection,
     ref,
     control,
+    builtAt,
   }) => {
     return (
       <Stack
@@ -162,7 +164,7 @@ const MyWork = () => {
         animate={control}
         overflow="hidden"
       >
-        <FrameOne color={bgcolor}>
+        <Frame color={bgcolor}>
           <Stack
             minHeight="100vh"
             justifyContent={"center"}
@@ -175,7 +177,18 @@ const MyWork = () => {
               variants={splineVariant}
               ref={ref}
             >
-              <Spline scene={project.spline} onLoad={() => completeLoading()} />
+              <Spline
+                scene={project.spline}
+                onLoad={() => {
+                  if (project.name === "Niyasa Global") {
+                    completeFirstProjectLoading();
+                    return;
+                  }
+                  if (project.name === "WHY Emotional Support &Therapy") {
+                    completeSecondProjectLoading();
+                  }
+                }}
+              />
             </Stack>
           </Stack>
           <Stack
@@ -189,15 +202,17 @@ const MyWork = () => {
             }}
           >
             <ParallaxText direction={parallaxDirection}>
-              <HeadingText
-                alignItems="center"
-                direction="row"
-                component={Stack}
-                sx={{ color: "#737373" }}
-                variant="h3"
-              >
-                {marqueeText}
-              </HeadingText>
+              <Tooltip title={builtAt} followCursor placement="right">
+                <HeadingText
+                  alignItems="center"
+                  direction="row"
+                  component={Stack}
+                  sx={{ color: "#737373" }}
+                  variant="h3"
+                >
+                  {marqueeText}
+                </HeadingText>
+              </Tooltip>
             </ParallaxText>
           </Stack>
           <Stack
@@ -238,10 +253,11 @@ const MyWork = () => {
               );
             })}
           </Stack>
-        </FrameOne>
+        </Frame>
       </Stack>
     );
   };
+
   return (
     <Stack sx={{ position: "relative" }}>
       <Stack
@@ -281,8 +297,46 @@ const MyWork = () => {
         ],
         ref: projectRefOne,
         control: controls,
+        builtAt: (
+          <Stack
+            sx={{
+              bgcolor: "#111",
+              p: 1,
+              my: 0.5,
+              borderRadius: "5px",
+            }}
+            component={motion.div}
+            initial={{ scale: 0.2 }}
+            animate={{ scale: 1 }}
+          >
+            <HeadingText variant="h4" sx={{ color: "#d6fb41" }}>
+              FREELANCING
+            </HeadingText>
+          </Stack>
+        ),
       })}
       {renderFrames({
+        builtAt: (
+          <Stack
+            sx={{
+              bgcolor: "#111",
+              p: 1,
+              px: 2,
+              my: 0.5,
+              borderRadius: "5px",
+            }}
+            component={motion.div}
+            initial={{ scale: 0.2 }}
+            animate={{ scale: 1 }}
+          >
+            <HeadingText variant="h4" sx={{ color: "#d6fb41" }}>
+              Built at{" "}
+              <Box component="span" sx={{ color: "#1f9e8c" }}>
+                Ellenox
+              </Box>
+            </HeadingText>
+          </Stack>
+        ),
         zIndex: 3,
         bgcolor: "#e3ff73",
         top: "100px",
@@ -315,7 +369,7 @@ const MyWork = () => {
           borderRadius: "5em 5em 0 0 ",
         }}
       >
-        <FrameOne color="transparent" />
+        <Frame color="transparent" />
       </Stack>
     </Stack>
   );

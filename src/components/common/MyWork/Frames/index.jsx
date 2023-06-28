@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 
-const FrameOne = ({ color, children }) => {
+const Frame = ({ color, children }) => {
   return (
     <motion.div>
       {" "}
@@ -21,4 +21,4 @@ const FrameOne = ({ color, children }) => {
   );
 };
 
-export default FrameOne;
+export default Frame;

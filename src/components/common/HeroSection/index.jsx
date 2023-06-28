@@ -13,7 +13,7 @@ import { ParallaxText } from "../ParallaxText";
 import AppContext from "../../../context/AppContext";
 
 const HeroSection = () => {
-  const { appLoading } = useContext(AppContext);
+  const { loadingAnimationComplete } = useContext(AppContext);
   const [firstAnimationOver, setFirstAnimationOver] = useState(false);
   const [showBtnText, setShowBtnText] = useState(true);
   const [btnHovered, setBtnHovered] = useState(false);
@@ -81,100 +81,99 @@ const HeroSection = () => {
   };
   return (
     <Stack minHeight="110vh">
-      <Stack
-        width="95vw"
-        mx="auto"
-        height="100px"
-        alignItems={"center"}
-        direction="row"
-        justifyContent={"space-between"}
-        component={motion.div}
-        variants={entryContainerVariant}
-        initial="initial"
-        animate="animate"
-        overflow="hidden"
-      >
-        <Stack variants={entryVariant} component={motion.div}>
-          <SemiboldText>SUMAN KUMAR SINHA</SemiboldText>
-        </Stack>
-        <Stack
-          direction="row"
-          gap="40px"
-          variants={entryVariant}
-          component={motion.div}
-        >
-          <SemiboldText>
-            AVAILABLE FOR FREELANCE
-            <br /> WORK FROM JULY 2023
-          </SemiboldText>
-          <Button
-            sx={{
-              textTransform: "inherit",
-              border: "1px solid #ffffe3",
-              borderRadius: "100vmax",
-              color: "#ffffe3",
-              overflow: "hidden",
-              width: "100px",
-              mr: 1,
-            }}
-            component={motion.div}
-            whileHover={{
-              backgroundColor: "#d6fb41",
-              borderColor: "#d6fb41",
-              scale: [1, 1.1, 1],
-              transition: {
-                duration: 0.2,
-              },
-            }}
-            onMouseOver={() => {
-              setShowBtnText(false);
-            }}
-            onMouseLeave={() => setBtnHovered(false)}
-          >
-            <AnimatePresence>
-              {showBtnText && !btnHovered && (
-                <SemiboldText
-                  component={motion.div}
-                  initial={{ y: "200%" }}
-                  animate={{
-                    y: "0%",
-                    transition: { duration: 0.1, type: "spring" },
-                  }}
-                  exit={{ y: "200%", transition: { duration: 0.1 } }}
-                  onAnimationComplete={(e) =>
-                    e.y === "200%" && setBtnHovered(true)
-                  }
-                >
-                  Contact
-                </SemiboldText>
-              )}
-            </AnimatePresence>
-            <AnimatePresence>
-              {btnHovered && !showBtnText && (
-                <SemiboldText
-                  component={motion.div}
-                  initial={{ y: "-200%" }}
-                  animate={{
-                    y: "0%",
-                    transition: { duration: 0.1, type: "spring" },
-                  }}
-                  exit={{ y: "-200%", transition: { duration: 0.1 } }}
-                  onAnimationComplete={(e) =>
-                    e.y === "-200%" && setShowBtnText(true)
-                  }
-                  sx={{ color: "#111111" }}
-                >
-                  Contact
-                </SemiboldText>
-              )}
-            </AnimatePresence>
-          </Button>
-        </Stack>
-      </Stack>
       <AnimatePresence>
-        {!appLoading && (
+        {!loadingAnimationComplete && (
           <>
-            {" "}
+            <Stack
+              width="95vw"
+              mx="auto"
+              height="100px"
+              alignItems={"center"}
+              direction="row"
+              justifyContent={"space-between"}
+              component={motion.div}
+              variants={entryContainerVariant}
+              initial="initial"
+              animate="animate"
+              overflow="hidden"
+            >
+              <Stack variants={entryVariant} component={motion.div}>
+                <SemiboldText>SUMAN KUMAR SINHA</SemiboldText>
+              </Stack>
+              <Stack
+                direction="row"
+                gap="40px"
+                variants={entryVariant}
+                component={motion.div}
+              >
+                <SemiboldText>
+                  AVAILABLE FOR FREELANCE
+                  <br /> WORK FROM JULY 2023
+                </SemiboldText>
+                <Button
+                  sx={{
+                    textTransform: "inherit",
+                    border: "1px solid #ffffe3",
+                    borderRadius: "100vmax",
+                    color: "#ffffe3",
+                    overflow: "hidden",
+                    width: "100px",
+                    mr: 1,
+                  }}
+                  component={motion.div}
+                  whileHover={{
+                    backgroundColor: "#d6fb41",
+                    borderColor: "#d6fb41",
+                    scale: [1, 1.1, 1],
+                    transition: {
+                      duration: 0.2,
+                    },
+                  }}
+                  onMouseOver={() => {
+                    setShowBtnText(false);
+                  }}
+                  onMouseLeave={() => setBtnHovered(false)}
+                >
+                  <AnimatePresence>
+                    {showBtnText && !btnHovered && (
+                      <SemiboldText
+                        component={motion.div}
+                        initial={{ y: "200%" }}
+                        animate={{
+                          y: "0%",
+                          transition: { duration: 0.1, type: "spring" },
+                        }}
+                        exit={{ y: "200%", transition: { duration: 0.1 } }}
+                        onAnimationComplete={(e) =>
+                          e.y === "200%" && setBtnHovered(true)
+                        }
+                      >
+                        Contact
+                      </SemiboldText>
+                    )}
+                  </AnimatePresence>
+                  <AnimatePresence>
+                    {btnHovered && !showBtnText && (
+                      <SemiboldText
+                        component={motion.div}
+                        initial={{ y: "-200%" }}
+                        animate={{
+                          y: "0%",
+                          transition: { duration: 0.1, type: "spring" },
+                        }}
+                        exit={{ y: "-200%", transition: { duration: 0.1 } }}
+                        onAnimationComplete={(e) =>
+                          e.y === "-200%" && setShowBtnText(true)
+                        }
+                        sx={{ color: "#111111" }}
+                      >
+                        Contact
+                      </SemiboldText>
+                    )}
+                  </AnimatePresence>
+                </Button>
+              </Stack>
+            </Stack>{" "}
             <Stack
               flex={1}
               justifyContent="center"
