@@ -64,6 +64,7 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
                 height: "10px",
                 border: "1px solid #fff",
                 borderRadius: "100vmax",
+                overflow: "hidden",
               }}
             >
               <motion.div
@@ -79,7 +80,11 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
                   transition: { ease: constants[`transitions`], duration: 1.4 },
                 }}
                 onAnimationComplete={() => {
-                  if (!appLoading.projectTwo) controls.start("visible");
+                  if (!appLoading.projectTwo) {
+                    setTimeout(() => {
+                      controls.start("visible");
+                    }, 500);
+                  }
                 }}
               ></motion.div>
             </motion.div>
