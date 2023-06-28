@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import { motion, useAnimationControls } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
-import { LoaderText } from "../../styles/fonts";
+import { HeadingText, LoaderText } from "../../styles/fonts";
 import { constants } from "../../../constants";
 import AppContext from "../../../context/AppContext";
 
@@ -12,11 +12,11 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
 
   const animateOutVariant = {
     hidden: {
-      scale: 0.5,
+      scale: 0.4,
     },
     visible: {
       scale: 300,
-      x: "-200%",
+      x: "-300%",
       transition: { ease: constants[`transitions`], duration: 2 },
     },
   };
@@ -40,7 +40,7 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
             right: 0,
             left: 0,
             bottom: 0,
-            zIndex: 999,
+            zIndex: 999,bgcolor:'#ffffe3'
           }}
           justifyContent="center"
           alignItems="center"
@@ -56,13 +56,17 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
               setLoadingAnimationComplete(false);
             }}
           >
-            <LoaderText variant="h1">Suman.dev</LoaderText>
+            {!appLoading.projectOne && !appLoading.projectTwo ? (
+              <HeadingText variant="h1" sx={{color:'#111111'}}>Loaded let's go</HeadingText>
+            ) : (
+              <HeadingText variant="h1" sx={{color:'#111111'}}>Loading</HeadingText>
+            )}
             <motion.div
               style={{
                 position: "relative",
                 width: "200px",
                 height: "10px",
-                border: "1px solid #fff",
+                border: "1px solid #111111",
                 borderRadius: "100vmax",
                 overflow: "hidden",
               }}
@@ -76,14 +80,14 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
                 }}
                 initial={{ width: 0 }}
                 animate={{
-                  width: `${loadingSplines * 4}px`,
+                  width: `${loadingSplines * 2}px`,
                   transition: { ease: constants[`transitions`], duration: 1.4 },
                 }}
                 onAnimationComplete={() => {
                   if (!appLoading.projectTwo) {
                     setTimeout(() => {
                       controls.start("visible");
-                    }, 500);
+                    }, 1000);
                   }
                 }}
               ></motion.div>
