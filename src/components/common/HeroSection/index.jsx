@@ -1,16 +1,9 @@
 import { Button, IconButton, Stack } from "@mui/material";
 import React, { useContext, useState } from "react";
-import {
-  HeadingText,
-  LoaderText,
-  MediumText,
-  RegularText,
-  SemiboldText,
-} from "../../styles/fonts";
+import { HeadingText, RegularText, SemiboldText } from "../../styles/fonts";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowBackIos,
-  ArrowDownward,
+   ArrowDownward,
   ArrowForwardIos,
 } from "@mui/icons-material";
 import { constants } from "../../../constants";
@@ -147,7 +140,7 @@ const HeroSection = () => {
                         borderRadius="100vmax"
                         position="absolute"
                         right="0"
-                       >
+                      >
                         <ArrowForwardIos sx={{ color: "#111111" }} />
                       </Stack>
                     )}
@@ -155,11 +148,11 @@ const HeroSection = () => {
                       {contactBtnHovered && (
                         <Stack
                           component={motion.div}
-                          initial={{ width: "40px",  }}
+                          initial={{ width: "40px" }}
                           animate={{
                             width: "100%",
-                           }}
-                          exit={{ width: "40px",   }}
+                          }}
+                          exit={{ width: "40px" }}
                           bgcolor="#D6FB41"
                           height="40px"
                           alignItems="center"
