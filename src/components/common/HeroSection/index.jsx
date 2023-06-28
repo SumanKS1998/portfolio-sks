@@ -2,12 +2,17 @@ import { Button, IconButton, Stack } from "@mui/material";
 import React, { useContext, useState } from "react";
 import {
   HeadingText,
+  LoaderText,
   MediumText,
   RegularText,
   SemiboldText,
 } from "../../styles/fonts";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDownward } from "@mui/icons-material";
+import {
+  ArrowBackIos,
+  ArrowDownward,
+  ArrowForwardIos,
+} from "@mui/icons-material";
 import { constants } from "../../../constants";
 import { ParallaxText } from "../ParallaxText";
 import AppContext from "../../../context/AppContext";
@@ -15,8 +20,7 @@ import AppContext from "../../../context/AppContext";
 const HeroSection = () => {
   const { loadingAnimationComplete } = useContext(AppContext);
   const [firstAnimationOver, setFirstAnimationOver] = useState(false);
-  const [showBtnText, setShowBtnText] = useState(true);
-  const [btnHovered, setBtnHovered] = useState(false);
+  const [contactBtnHovered, setContedtBtnHovered] = useState(false);
   const headingTextOne = `FRONT`.split("");
   const headingTextSubOne = `——`.split("");
   const headingTextSubTwo = `END`.split("");
@@ -27,6 +31,7 @@ const HeroSection = () => {
         direction="row"
         height="40vh"
         overflow={firstAnimationOver ? "visible" : "hidden"}
+        mx={4}
       >
         {text.map((item, i) => {
           return (
@@ -111,66 +116,63 @@ const HeroSection = () => {
                   <br /> WORK FROM JULY 2023
                 </SemiboldText>
                 <Button
-                  sx={{
-                    textTransform: "inherit",
-                    border: "1px solid #ffffe3",
-                    borderRadius: "100vmax",
-                    color: "#ffffe3",
-                    overflow: "hidden",
-                    width: "100px",
-                    mr: 1,
-                  }}
-                  component={motion.div}
-                  whileHover={{
-                    backgroundColor: "#d6fb41",
-                    borderColor: "#d6fb41",
-                    scale: [1, 1.1, 1],
-                    transition: {
-                      duration: 0.2,
-                    },
-                  }}
-                  onMouseOver={() => {
-                    setShowBtnText(false);
-                  }}
-                  onMouseLeave={() => setBtnHovered(false)}
+                  sx={{ textTransform: "inherit" }}
+                  onMouseOver={() => setContedtBtnHovered(true)}
+                  onMouseLeave={() => setContedtBtnHovered(false)}
+                  disableRipple
+                  disableTouchRipple
+                  disableFocusRipple
                 >
-                  <AnimatePresence>
-                    {showBtnText && !btnHovered && (
-                      <SemiboldText
+                  <Stack
+                    justifyContent="center"
+                    direction="row"
+                    alignItems="center"
+                    width="200px"
+                    position="relative"
+                    bgcolor="#ffffe3"
+                    borderRadius="100vmax"
+                    py={0.5}
+                  >
+                    <HeadingText variant="h6" sx={{ color: "#111111" }}>
+                      Contact
+                    </HeadingText>
+                    {!contactBtnHovered && (
+                      <Stack
                         component={motion.div}
-                        initial={{ y: "200%" }}
-                        animate={{
-                          y: "0%",
-                          transition: { duration: 0.1, type: "spring" },
-                        }}
-                        exit={{ y: "200%", transition: { duration: 0.1 } }}
-                        onAnimationComplete={(e) =>
-                          e.y === "200%" && setBtnHovered(true)
-                        }
-                      >
-                        Contact
-                      </SemiboldText>
+                        width="40px"
+                        bgcolor="#D6FB41"
+                        height="40px"
+                        alignItems="center"
+                        justifyContent="center"
+                        borderRadius="100vmax"
+                        position="absolute"
+                        right="0"
+                       >
+                        <ArrowForwardIos sx={{ color: "#111111" }} />
+                      </Stack>
                     )}
-                  </AnimatePresence>
-                  <AnimatePresence>
-                    {btnHovered && !showBtnText && (
-                      <SemiboldText
-                        component={motion.div}
-                        initial={{ y: "-200%" }}
-                        animate={{
-                          y: "0%",
-                          transition: { duration: 0.1, type: "spring" },
-                        }}
-                        exit={{ y: "-200%", transition: { duration: 0.1 } }}
-                        onAnimationComplete={(e) =>
-                          e.y === "-200%" && setShowBtnText(true)
-                        }
-                        sx={{ color: "#111111" }}
-                      >
-                        Contact
-                      </SemiboldText>
-                    )}
-                  </AnimatePresence>
+                    <AnimatePresence>
+                      {contactBtnHovered && (
+                        <Stack
+                          component={motion.div}
+                          initial={{ width: "40px",  }}
+                          animate={{
+                            width: "100%",
+                           }}
+                          exit={{ width: "40px",   }}
+                          bgcolor="#D6FB41"
+                          height="40px"
+                          alignItems="center"
+                          justifyContent="center"
+                          borderRadius="100vmax"
+                          position="absolute"
+                          right="0"
+                        >
+                          <ArrowForwardIos sx={{ color: "#111111" }} />
+                        </Stack>
+                      )}
+                    </AnimatePresence>
+                  </Stack>
                 </Button>
               </Stack>
             </Stack>{" "}
@@ -191,9 +193,9 @@ const HeroSection = () => {
                   component={motion.div}
                   variants={entryVariant}
                 >
-                  {renderTitle({ text: headingTextOne, fontSize: "22vw" })}
-                  {renderTitle({ text: headingTextSubOne, fontSize: "22vw" })}
-                  {renderTitle({ text: headingTextSubTwo, fontSize: "22vw" })}
+                  {renderTitle({ text: headingTextOne, fontSize: "20vw" })}
+                  {renderTitle({ text: headingTextSubOne, fontSize: "20vw" })}
+                  {renderTitle({ text: headingTextSubTwo, fontSize: "20vw" })}
                 </Stack>
               </ParallaxText>
               <ParallaxText direction={true}>
@@ -212,6 +214,7 @@ const HeroSection = () => {
                     height="40vh"
                     overflow="hidden"
                     sx={{ whiteSpace: "pre-wrap !important" }}
+                    mr={5}
                   >
                     <RegularText
                       sx={{

@@ -8,6 +8,7 @@ import {
   useVelocity,
   useAnimationFrame,
 } from "framer-motion";
+import { Stack } from "@mui/material";
 
 const wrap = (min, max, v) => {
   const rangeSize = max - min;
@@ -69,9 +70,13 @@ export function ParallaxText({ children, direction }) {
         <motion.span style={{ skew: skewVelocityFactor }}>
           {children}
         </motion.span>
-        <motion.span style={{ skew: skewVelocityFactor }}>
+        <Stack
+          component={motion.span}
+          display={{ xs: "none", xl: "visible" }}
+          style={{ skew: skewVelocityFactor }}
+        >
           {children}
-        </motion.span>
+        </Stack>
       </motion.div>
     </div>
   );
