@@ -8,12 +8,12 @@ const Frame = ({ color, children }) => {
       {" "}
       <Stack
         minHeight="100vh"
-        bgcolor={ "#ff6943"}
+        bgcolor={color}
         borderRadius="5em"
         component={motion.div}
         sx={{ position: "relative" }}
-        width='100%'
-        overflow='hidden'
+        width="100%"
+        overflow="hidden"
       >
         {children}
       </Stack>

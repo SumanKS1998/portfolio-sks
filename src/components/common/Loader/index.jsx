@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import { motion, useAnimationControls } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
-import { HeadingText,   } from "../../styles/fonts";
+import { HeadingText } from "../../styles/fonts";
 import { constants } from "../../../constants";
 import AppContext from "../../../context/AppContext";
 
@@ -9,15 +9,14 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
   const { loadingAnimationComplete } = useContext(AppContext);
   const controls = useAnimationControls();
   const [loadingSplines, setLoadingSplines] = useState(10);
-
-  const animateOutVariant = {
+   const animateOutVariant = {
     hidden: {
       scale: 0.4,
     },
     visible: {
       scale: 200,
       x: "-200%",
-      transition: { ease: constants[`transitions`], duration: 1},
+      transition: { ease: constants[`transitions`], duration: 1 },
     },
   };
   useEffect(() => {
@@ -28,7 +27,7 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
       setLoadingSplines(100);
     }
   }, [appLoading]);
-
+ 
   return (
     <>
       {loadingAnimationComplete && (
@@ -46,26 +45,48 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
           justifyContent="center"
           alignItems="center"
         >
+          <HeadingText
+            sx={{
+              position: "absolute",
+              zIndex: 500,
+              top: 0,
+              color: "transparent",
+            }}
+          >
+            test
+          </HeadingText>
           <Stack
             alignItems="center"
             component={motion.div}
             variants={animateOutVariant}
             initial="hidden"
             animate={controls}
-            gap="16px"
+            gap="32px"
             onAnimationComplete={() => {
               setLoadingAnimationComplete(false);
             }}
           >
-            {!appLoading.projectOne && !appLoading.projectTwo ? (
-              <HeadingText variant="h1" sx={{ color: "#111111" }}>
-                Loaded let's go
-              </HeadingText>
-            ) : (
-              <HeadingText variant="h1" sx={{ color: "#111111" }}>
-                Loading
-              </HeadingText>
-            )}
+            <HeadingText
+              variant="h1"
+              sx={{
+                color:
+                  !appLoading.projectOne && !appLoading.projectTwo
+                    ? "#111111"
+                    : "transparent",
+              }}
+              initial={{ x: 200, opacity: 0 }}
+              component={motion.div}
+              animate={{
+                x: !appLoading.projectOne && !appLoading.projectTwo && 0,
+                opacity: !appLoading.projectOne &&
+                  !appLoading.projectTwo && [0, 0.5, 1],
+              }}
+              transition={{ duration: 0.5 }}
+              height="100px"
+            >
+              Loaded let's go
+            </HeadingText>
+
             <motion.div
               style={{
                 position: "relative",
@@ -74,6 +95,7 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
                 border: "1px solid #111111",
                 borderRadius: "100vmax",
                 overflow: "hidden",
+                mt: "100px",
               }}
             >
               <motion.div
@@ -89,9 +111,9 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
                   transition: { ease: constants[`transitions`], duration: 1.4 },
                 }}
                 onAnimationComplete={() => {
-                  if (loadingSplines===100) {
-                       controls.start("visible");
-                   }
+                  if (loadingSplines === 100) {
+                    controls.start("visible");
+                  }
                 }}
               ></motion.div>
             </motion.div>
