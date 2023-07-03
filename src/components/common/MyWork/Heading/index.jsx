@@ -38,14 +38,14 @@ const titleVariants = {
   },
 };
 
-const Heading = ({ scrollY }) => {
+const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading}) => {
   const springRotator = useSpring(scrollY, {
     stiffness: 50,
     damping: 30,
   });
-  const rotateStar = useTransform(springRotator, [-2000, 2000], [0, 1000]);
+   const rotateStar = useTransform(springRotator, [-2000, 2000], [0, 1000]);
   const ref = useRef(null);
-  const title = `MY\u00a0 WORK`.split("");
+  const title = headingText?.split("");
   return (
     <Stack sx={{ position: "relative" }} mx="32px">
       <Stack
@@ -64,7 +64,7 @@ const Heading = ({ scrollY }) => {
           height={"13vw"}
           overflow="hidden"
         >
-          {title.map((item, i) => {
+          {title?.map((item, i) => {
             return (
               <motion.div key={i}>
                 <HeadingText sx={{ fontSize: "10vw" }}>{item}</HeadingText>
@@ -72,7 +72,7 @@ const Heading = ({ scrollY }) => {
             );
           })}
         </Stack>
-        <Stack direction="row" justifyContent="center" ref={ref}>
+        <Stack direction="row" justifyContent="center" ref={ref} display={hideSubHeading ? "none" : "flex"}>
           <motion.img
             variants={titleVariants}
             src={Images.StarSvg}
@@ -101,30 +101,20 @@ const Heading = ({ scrollY }) => {
             }}
           />
         </Stack>
-        <Stack component={motion.div} textAlign={{ xs: "center" }}>
+        <Stack component={motion.div} textAlign={{ xs: "center" }} display={hideSubHeading ? "none" : "flex"}>
           <Stack width="max-content" ml="auto" gap="8px">
-            <MediumText
-              variant="h4"
-              variants={titleVariants}
-              component={motion.div}
-            >
-              Explore some of the exciting projects I've
-            </MediumText>
-
-            <MediumText
-              variant="h4"
-              variants={titleVariants}
-              component={motion.div}
-            >
-              worked on throughout
-            </MediumText>
-            <MediumText
-              variant="h4"
-              variants={titleVariants}
-              component={motion.div}
-            >
-              my career.✨
-            </MediumText>
+            {subHeadingText?.map((item) => {
+              return (
+                <MediumText
+                  variant="h4"
+                  variants={titleVariants}
+                  component={motion.div}
+                  key={item}
+                >
+                  {item}
+                </MediumText>
+              );
+            })}
           </Stack>
         </Stack>
       </Stack>

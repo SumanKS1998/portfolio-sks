@@ -14,8 +14,8 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
       scale: 0.4,
     },
     visible: {
-      scale: 200,
-      x: "-200%",
+      scale: 250,
+      // x: "-200%",
       transition: { ease: constants[`transitions`], duration: 1 },
     },
   };
@@ -84,7 +84,8 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
               transition={{ duration: 0.5 }}
               height="100px"
             >
-              Loaded let's go
+              {/* Loaded let's go */}
+              Suman Kumar Sinha
             </HeadingText>
 
             <motion.div

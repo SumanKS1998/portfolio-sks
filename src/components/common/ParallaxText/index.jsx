@@ -15,16 +15,19 @@ const wrap = (min, max, v) => {
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
 };
 
+export const SkewComponent = ({ children, skew }) => {
+  return <motion.span style={{ skew }}>{children}</motion.span>;
+};
 export function ParallaxText({ children, direction }) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
-  const directionOfScroll = direction ? 5 : -5;
-  const skewDirection = direction ? [30, -30] : [-30, 30];
   const smoothVelocity = useSpring(scrollVelocity, {
     damping: 50,
     stiffness: 300,
   });
+  const directionOfScroll = direction ? 5 : -5;
+  const skewDirection = direction ? [30, -30] : [-30, 30];
   const skewVelocity = useSpring(scrollVelocity, {
     stiffness: 100,
     damping: 30,
@@ -58,22 +61,11 @@ export function ParallaxText({ children, direction }) {
   return (
     <div className="parallax">
       <motion.div className="scroller" style={{ x }}>
-        <motion.span style={{ skew: skewVelocityFactor }}>
-          {children}
-        </motion.span>
-        <motion.span style={{ skew: skewVelocityFactor }}>
-          {children}
-        </motion.span>
-        <motion.span style={{ skew: skewVelocityFactor }}>
-          {children}
-        </motion.span>
-        <motion.span style={{ skew: skewVelocityFactor }}>
-          {children}
-        </motion.span>
-        <motion.span style={{ skew: skewVelocityFactor }}>
-          {children}
-        </motion.span>
-       
+        {new Array(5).fill(0).map((_, i) => (
+          <SkewComponent key={i} skew={skewVelocityFactor}>
+            {children}
+          </SkewComponent>
+        ))}
       </motion.div>
     </div>
   );
