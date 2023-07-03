@@ -1,14 +1,12 @@
-import { Button, IconButton, Stack } from "@mui/material";
+import { Box, Button, IconButton, Stack } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { HeadingText, RegularText, SemiboldText } from "../../styles/fonts";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-   ArrowDownward,
-  ArrowForwardIos,
-} from "@mui/icons-material";
+import { ArrowDownward, ArrowForwardIos } from "@mui/icons-material";
 import { constants } from "../../../constants";
 import { ParallaxText } from "../ParallaxText";
 import AppContext from "../../../context/AppContext";
+import Images from "../../../assets";
 
 const HeroSection = () => {
   const { loadingAnimationComplete } = useContext(AppContext);
@@ -18,42 +16,47 @@ const HeroSection = () => {
   const headingTextSubOne = `——`.split("");
   const headingTextSubTwo = `END`.split("");
   const headingTextTwo = `DEVELOPER`.split("");
-  const renderTitle = ({ text, fontSize }) => {
-    return (
-      <Stack
-        direction="row"
-        height="40vh"
-        overflow={firstAnimationOver ? "visible" : "hidden"}
-        mx={4}
-      >
-        {text.map((item, i) => {
-          return (
-            <motion.div
-              key={i}
-              onAnimationComplete={() => {
-                setFirstAnimationOver(true);
-              }}
-              whileHover={{
-                scale: 1.02,
-                color: ["#ffffe3", "#d6fb41"],
-              }}
-              initial={{ opacity: 0, y: 400 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 1,
-                  delay: i * 0.1,
-                  ...constants[`transitions`],
-                },
-              }}
-            >
-              <HeadingText sx={styles.titleStyle}>{item}</HeadingText>
-            </motion.div>
-          );
-        })}
-      </Stack>
-    );
+  const renderTitle = ({ text, fontSize, image }) => {
+    if (text) {
+      return (
+        <Stack
+          direction="row"
+          height="40vh"
+          overflow={firstAnimationOver ? "visible" : "hidden"}
+          mx={4}
+        >
+          {text.map((item, i) => {
+            return (
+              <motion.div
+                key={i}
+                onAnimationComplete={() => {
+                  setFirstAnimationOver(true);
+                }}
+                whileHover={{
+                  scale: 1.02,
+                  color: ["#ffffe3", "#d6fb41"],
+                }}
+                initial={{ opacity: 0, y: 400 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 1,
+                    delay: i * 0.1,
+                    ...constants[`transitions`],
+                  },
+                }}
+              >
+                <HeadingText sx={styles.titleStyle}>{item}</HeadingText>
+              </motion.div>
+            );
+          })}
+        </Stack>
+      );
+    }
+    if (Image) {
+      return <Box component="img" src={image} sx={{height:'16vw',bgcolor:'#d6fb41',mt:1}} />;
+    }
   };
   const entryContainerVariant = {
     initial: {
@@ -187,7 +190,7 @@ const HeroSection = () => {
                   variants={entryVariant}
                 >
                   {renderTitle({ text: headingTextOne, fontSize: "20vw" })}
-                  {renderTitle({ text: headingTextSubOne, fontSize: "20vw" })}
+                  {renderTitle({ image: Images.SumanImage, fontSize: "20vw" })}
                   {renderTitle({ text: headingTextSubTwo, fontSize: "20vw" })}
                 </Stack>
               </ParallaxText>

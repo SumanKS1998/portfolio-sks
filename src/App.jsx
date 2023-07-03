@@ -1,6 +1,4 @@
 import { useState, useMemo } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import { ThemeProvider } from "@emotion/react";
 import { Stack, createTheme, responsiveFontSizes } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
