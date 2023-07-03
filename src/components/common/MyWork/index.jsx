@@ -19,9 +19,10 @@ import Images from "../../../assets";
 import AppContext from "../../../context/AppContext";
 import Spline from "@splinetool/react-spline";
 import Heading from "./Heading";
- import { BoldText, HeadingText } from "../../styles/fonts";
+import { BoldText, HeadingText } from "../../styles/fonts";
 import { ParallaxText } from "../ParallaxText";
 import Frame from "./Frames";
+import MyTools from "../MyTools";
 const chipContainerVariant = {
   hidden: {
     opacity: 1,
@@ -93,7 +94,7 @@ const MyWork = () => {
   const isInViewHeading = useInView(headingRef, { once: true });
   const isInViewProject = useInView(projectRefOne);
   const isInViewProjectTwo = useInView(projectRefTwo);
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
 
   const controls = useAnimationControls();
   const controlsTwo = useAnimationControls();
@@ -267,7 +268,17 @@ const MyWork = () => {
         sx={{ position: "sticky", top: "0px", zIndex: 1 }}
       >
         <AnimatePresence>
-          {isInViewHeading && <Heading scrollY={scrollY} />}
+          {isInViewHeading && (
+            <Heading
+              headingText={`MY\u00a0WORK`}
+              subHeadingText={[
+                `Explore some of the exciting projects I've`,
+                `worked on throughout`,
+                `my career.✨`,
+              ]}
+              scrollY={scrollY}
+            />
+          )}
         </AnimatePresence>
       </Stack>
 
@@ -359,18 +370,7 @@ const MyWork = () => {
         control: controlsTwo,
       })}
 
-      <Stack
-        component={motion.div}
-        sx={{
-          position: "sticky",
-          top: "200px",
-          zIndex: 4,
-          bgcolor: "#fff",
-          borderRadius: "5em 5em 0 0 ",
-        }}
-      >
-        <Frame color="transparent" />
-      </Stack>
+      <MyTools />
     </Stack>
   );
 };
