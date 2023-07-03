@@ -32,67 +32,92 @@ export const tools = [
     name: "JavaScript",
     link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
     icon: Images.Javascript,
-    description: "A high-level programming language commonly used for web development.",
+    description:
+      "A high-level programming language commonly used for web development.",
   },
   {
     name: "Material UI",
     link: "https://material-ui.com/",
     icon: Images.MaterialUi,
-    description: "A popular React UI framework that provides pre-built components following the Material Design guidelines.",
+    description:
+      "A popular React UI framework that provides pre-built components following the Material Design guidelines.",
   },
   {
     name: "Firebase",
     link: "https://firebase.google.com/",
     icon: Images.Firebase,
-    description: "A comprehensive platform for building web and mobile applications, offering various backend services.",
+    description:
+      "A comprehensive platform for building web and mobile applications, offering various backend services.",
   },
   {
     name: "Tailwind",
     link: "https://tailwindcss.com/",
     icon: Images.Tailwind,
-    description: "A utility-first CSS framework that provides a set of pre-defined classes to style web elements.",
+    description:
+      "A utility-first CSS framework that provides a set of pre-defined classes to style web elements.",
   },
   {
     name: "TypeScript",
     link: "https://www.typescriptlang.org/",
     icon: Images.Typescript,
-    description: "A typed superset of JavaScript that adds static types to the language.",
+    description:
+      "A typed superset of JavaScript that adds static types to the language.",
   },
   {
     name: "Expo",
     link: "https://reactnative.dev/",
     icon: Images.Expo,
-    description: "A set of tools and services for building cross-platform mobile applications with React Native.",
+    description:
+      "A set of tools and services for building cross-platform mobile applications with React Native.",
   },
   {
     name: "Framer Motion",
     link: "https://www.framer.com/api/motion/",
     icon: Images.FramerMotion,
-    description: "A React library for creating smooth and interactive animations.",
+    description:
+      "A React library for creating smooth and interactive animations.",
   },
   {
     name: "Node.js",
     link: "https://nodejs.org/",
     icon: Images.NodeJs,
-    description: "A runtime environment for executing JavaScript code outside the browser, typically on the server-side.",
+    description:
+      "A runtime environment for executing JavaScript code outside the browser, typically on the server-side.",
   },
   {
     name: "Next.js",
     link: "https://nextjs.org/",
     icon: Images.NextJS,
-    description: "A React framework for building server-side rendered (SSR) and statically generated (SSG) websites.",
+    description:
+      "A React framework for building server-side rendered (SSR) and statically generated (SSG) websites.",
   },
   {
     name: "HTML",
     link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
     icon: Images.HTML,
-    description: "The standard markup language for creating web pages and applications.",
+    description:
+      "The standard markup language for creating web pages and applications.",
   },
   {
     name: "CSS",
     link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
     icon: Images.CSS,
-    description: "The style sheet language used for describing the visual presentation of a document written in HTML.",
+    description:
+      "The style sheet language used for describing the visual presentation of a document written in HTML.",
   },
 ];
 
+export const socialLinks = [
+  {
+    socialLink: "https://github.com/SumanKS1998",
+    socialPlatform: "GitHub",
+  },
+  {
+    socialLink: "https://www.linkedin.com/in/suman-kumar-sinha",
+    socialPlatform: "LinkedIn",
+  },
+  {
+    socialLink: "https://www.instagram.com/s_u_m_a_n_s_i_n_h_a/",
+    socialPlatform: "Instagram",
+  },
+];

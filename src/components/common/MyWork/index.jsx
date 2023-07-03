@@ -349,7 +349,7 @@ const MyWork = () => {
           </Stack>
         ),
         zIndex: 3,
-        bgcolor: "#e3ff73",
+        bgcolor: "#ffffff",
         top: "100px",
         marqueeText: "WHY 🧘🏻 Emotional Support &Therapy",
         parallaxDirection: false,
