@@ -38,7 +38,7 @@ const titleVariants = {
   },
 };
 
-const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading}) => {
+const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading,color}) => {
   const springRotator = useSpring(scrollY, {
     stiffness: 50,
     damping: 30,
@@ -67,7 +67,7 @@ const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading}) => {
           {title?.map((item, i) => {
             return (
               <motion.div key={i}>
-                <HeadingText sx={{ fontSize: "10vw" }}>{item}</HeadingText>
+                <HeadingText sx={{ fontSize: "10vw" ,}}>{item}</HeadingText>
               </motion.div>
             );
           })}

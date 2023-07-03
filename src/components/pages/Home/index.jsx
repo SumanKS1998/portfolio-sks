@@ -6,6 +6,7 @@ import { useScroll } from "framer-motion";
 import MyWork from "../../common/MyWork";
 import TechStack from "../../common/TechStack";
 import ToolsSection from "../../common/MyTools";
+import Footer from "../../common/Footer";
 const Home = () => {
   return (
     <Stack
@@ -16,6 +17,7 @@ const Home = () => {
     >
       <HeroSection />
       <MyWork />
+      <Footer/>
     </Stack>
   );
 };

@@ -23,4 +23,11 @@ export const HeadingText = styled(Typography)({
   fontFamily: `'Bebas Neue', sans-serif`,
   fontWeight: 400,
 });
- 
+export const FooterMarqueeText = styled(Typography)({
+  fontFamily: `'Author', sans-serif`,
+  fontWeight: 900,
+});
+export const FooterText = styled(Typography)({
+  fontFamily: `'Author', sans-serif`,
+  fontWeight: 600,
+});

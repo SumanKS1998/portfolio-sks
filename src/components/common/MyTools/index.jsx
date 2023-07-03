@@ -11,21 +11,21 @@ import React, { useRef } from "react";
 import { tools } from "../../../constants";
 import Heading from "../MyWork/Heading";
 
-const ToolColumn = ({ tools, translateY }) => {
+const ToolColumn = ({ tools, translateY, scale }) => {
   return (
     <Stack>
       {tools.map((item, i) => (
         <Stack
           key={i}
           component={motion.div}
-          style={{ y: translateY }}
+          style={{ y: translateY ,scale}}
           alignItems="center"
           height="50vh"
           width="30vw"
           justifyContent="center"
           position="relative"
           zIndex={999}
-        >
+         >
           <Box
             component="img"
             src={item.icon}
@@ -42,7 +42,7 @@ const MyTools = () => {
   const isInView = useInView(containerRef);
   const { scrollY, scrollYProgress } = useScroll();
   const springScrollY = useSpring(scrollYProgress, {
-    stiffness: 50,
+    // stiffness: 50,
     damping: 30,
   });
   const translateY1 = useTransform(springScrollY, [0, 1], ["100%", "-100%"]);
@@ -63,7 +63,7 @@ const MyTools = () => {
     >
       <Stack
         alignItems="center"
-        height={"300vh"}
+        height={"200vh"}
         width="100%"
         pt={35}
         ref={containerRef}
@@ -91,9 +91,21 @@ const MyTools = () => {
           )}
         </AnimatePresence>
         <Stack direction="row" justifyContent="space-between" width="100%">
-          <ToolColumn tools={tools.slice(0, 4)} translateY={translateY1} />
-          <ToolColumn tools={tools.slice(4, 8)} translateY={translateY2} />
-          <ToolColumn tools={tools.slice(8)} translateY={translateY3} />
+          <ToolColumn
+            scale={0.6}
+            tools={tools.slice(0, 4)}
+            translateY={translateY1}
+          />
+          <ToolColumn
+            scale={0.8}
+            tools={tools.slice(4, 8)}
+            translateY={translateY2}
+          />
+          <ToolColumn
+            scale={1.2}
+            tools={tools.slice(8)}
+            translateY={translateY3}
+          />
         </Stack>
       </Stack>
     </Stack>
