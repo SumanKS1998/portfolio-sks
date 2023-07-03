@@ -55,7 +55,13 @@ const HeroSection = () => {
       );
     }
     if (Image) {
-      return <Box component="img" src={image} sx={{height:'16vw',bgcolor:'#d6fb41',mt:1}} />;
+      return (
+        <Box
+          component="img"
+          src={image}
+          sx={{ height: "16vw", bgcolor: "#d6fb41", mt: 1 }}
+        />
+      );
     }
   };
   const entryContainerVariant = {
@@ -79,6 +85,12 @@ const HeroSection = () => {
         ...constants[`transitions`],
       },
     },
+  };
+  const getToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
   };
   return (
     <Stack minHeight="110vh">
@@ -163,6 +175,7 @@ const HeroSection = () => {
                           borderRadius="100vmax"
                           position="absolute"
                           right="0"
+                          onClick={getToBottom}
                         >
                           <ArrowForwardIos sx={{ color: "#111111" }} />
                         </Stack>
