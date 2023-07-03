@@ -5,8 +5,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
 import AppContext from "./context/AppContext";
 import Loader from "./components/common/Loader";
+import { FooterText } from "./components/styles/fonts";
 
 function App() {
+  let theme = createTheme();
+
+  theme = responsiveFontSizes(theme);
+
   const [loadingAnimationComplete, setLoadingAnimationComplete] =
     useState(true);
   const [appLoading, setAppLoading] = useState({
@@ -32,29 +37,43 @@ function App() {
     [appLoading, loadingAnimationComplete]
   );
 
-  let theme = createTheme();
-  theme = responsiveFontSizes(theme);
-
   return (
     <AppContext.Provider value={contextValue}>
-      <ThemeProvider theme={theme}>
-        <Loader
-          appLoading={appLoading}
-          setLoadingAnimationComplete={setLoadingAnimationComplete}
-        />
-        <Stack
-          sx={{
-            height: loadingAnimationComplete ? "100vh" : "100%",
-            overflow: loadingAnimationComplete ? "hidden" : "visible",
-          }}
-        >
-          <BrowserRouter>
-            <Routes>
-              <Route element={<Home />} path="/" />
-            </Routes>
-          </BrowserRouter>
-        </Stack>
-      </ThemeProvider>
+      <Stack p={2} alignItems="center" display={{ xs: "flex", md: "none" }}>
+        <iframe
+          src="https://giphy.com/embed/ThrM4jEi2lBxd7X2yz"
+          width="300"
+          height="350"
+          class="giphy-embed"
+          allowFullScreen
+        ></iframe>
+        <FooterText sx={{ color: "#f3feee" }} variant="h6" textAlign={"center"}>
+          Please use the website on a desktop or larger screen for now. I am
+          currently working on the mobile responsiveness.
+          <br /> Thank you for your understanding!
+        </FooterText>
+      </Stack>
+
+      <Stack display={{ xs: "none", md: "flex" }}>
+        <ThemeProvider theme={theme}>
+          <Loader
+            appLoading={appLoading}
+            setLoadingAnimationComplete={setLoadingAnimationComplete}
+          />
+          <Stack
+            sx={{
+              height: loadingAnimationComplete ? "100vh" : "100%",
+              overflow: loadingAnimationComplete ? "hidden" : "visible",
+            }}
+          >
+            <BrowserRouter>
+              <Routes>
+                <Route element={<Home />} path="/" />
+              </Routes>
+            </BrowserRouter>
+          </Stack>
+        </ThemeProvider>
+      </Stack>
     </AppContext.Provider>
   );
 }
