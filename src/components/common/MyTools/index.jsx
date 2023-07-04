@@ -42,7 +42,7 @@ const MyTools = () => {
   const isInView = useInView(containerRef);
   const { scrollY, scrollYProgress } = useScroll();
   const springScrollY = useSpring(scrollYProgress, {
-    // stiffness: 50,
+    stiffness: 50,
     damping: 30,
   });
   const translateY1 = useTransform(springScrollY, [0, 1], ["100%", "-100%"]);
