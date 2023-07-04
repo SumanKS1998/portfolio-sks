@@ -6,7 +6,13 @@ import {
   HeadingText,
 } from "../../styles/fonts";
 import { ParallaxText } from "../ParallaxText";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { Button, Stack } from "@mui/material";
 import { socialLinks } from "../../../constants";
 import { useNavigate } from "react-router";
@@ -47,11 +53,11 @@ const Footer = () => {
           >
             <Stack
               sx={{
-                border: `3px solid #323334`,
+                border: `3px solid gray`,
                 p: 2,
                 width: "150px",
                 borderRadius: "100vmax",
-                color: "#323334",
+                color: "#808080",
               }}
               mt={2}
               alignItems="center"
@@ -75,9 +81,9 @@ const Footer = () => {
       </Stack>
       <Stack alignItems="center" mt={{ xs: 5, xl: `128px` }}>
         <FooterHeadingText
-          variant="h4"
+          variant="h5"
           textAlign={"center"}
-          sx={{ width: { md: "60%", xl: "45%", xs: "350px" }, color: "gray" }}
+          sx={{ width: { md: "50%", xl: "30%", xs: "350px" }, color: "gray" }}
         >
           Got a question, project or want to work together on something? Feel
           free to reach out.
@@ -89,10 +95,12 @@ const Footer = () => {
           mt={{ xs: 4, xl: 5 }}
           p={"16px"}
           gap="16px"
+          position="relative"
+          zIndex={2}
         >
           <Stack p={1} px={3} borderRadius={5} sx={{ bgcolor: "#3232345e" }}>
             <FooterText
-              variant="h2"
+              variant="h3"
               textAlign={"center"}
               sx={{ color: "#ccfc00" }}
             >
@@ -107,9 +115,9 @@ const Footer = () => {
           >
             <AnimatePresence>
               {copied ? (
-                <FooterText variant="h2"> ✅</FooterText>
+                <FooterText variant="h3"> ✅</FooterText>
               ) : (
-                <FooterText variant="h2">📋</FooterText>
+                <FooterText variant="h3">📋</FooterText>
               )}
             </AnimatePresence>
           </Stack>
@@ -122,10 +130,11 @@ const Footer = () => {
           whiteSpace: `nowrap`,
           bottom: 0,
         }}
-      >
+        component={motion.div}
+       >
         <FooterMarqueeText
           component={motion.div}
-          sx={{ fontSize: "26vw", color: "#323334", lineHeight: "90%" }}
+          sx={{ fontSize: "26vw", color: "#3233344f", lineHeight: "70%" }}
           variants={marqueeVariants}
           animate="animate"
         >
