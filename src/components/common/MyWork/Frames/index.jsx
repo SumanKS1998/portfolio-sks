@@ -9,7 +9,7 @@ const Frame = ({ color, children }) => {
       <Stack
         minHeight="100vh"
         bgcolor={color}
-        borderRadius="5em"
+        borderRadius="64px 64px 0 0"
         component={motion.div}
         sx={{ position: "relative" }}
         width="100%"
