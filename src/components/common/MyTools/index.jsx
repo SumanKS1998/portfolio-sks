@@ -46,11 +46,15 @@ const MyTools = () => {
     damping: 30,
   });
   const translateY1 = useTransform(springScrollY, [0, 1], ["100%", "-150%"]);
-  const translateY2 = useTransform(springScrollY, [0, 1], ["200%", "-200%"]);
-  const translateY3 = useTransform(springScrollY, [0, 1], ["300%", "-300%"]);
+  const translateY2 = useTransform(springScrollY, [0, 1], ["200%", "-250%"]);
+  const translateY3 = useTransform(springScrollY, [0, 1], ["300%", "-350%"]);
 
   return (
-    <Stack position="relative" sx={{bgcolor:'#111111'}} zIndex={4}>
+    <Stack
+      position="relative"
+      sx={{ bgcolor: "#111111", borderRadius: "64px 64px 0 0" }}
+      zIndex={4}
+    >
       <Stack
         position="absolute"
         right={0}
@@ -84,9 +88,9 @@ const MyTools = () => {
           top: "0px",
           backgroundColor: "#111111a1",
           zIndex: 4,
-          borderRadius: "5em 5em 0 0 ",
+          borderRadius: "64px 64px 0 0",
           height: "100%",
-          backdropFilter:'blur(100px)'
+          backdropFilter: "blur(100px)",
         }}
       >
         <Stack
