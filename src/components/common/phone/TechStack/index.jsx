@@ -24,7 +24,7 @@ const TechStack = () => {
     },
   };
   useEffect(() => {
-     if (selectedType === "All") {
+    if (selectedType === "All") {
       setFilteredArray(tools);
       return;
     } else if (selectedType === "Front-end") {
@@ -63,25 +63,24 @@ const TechStack = () => {
         </SemiboldText>
         <Stack
           direction="row"
-          width="100%"
-          justifyContent="space-between"
+          justifyContent="space-around"
           p={1}
           bgcolor="#1b1c1c"
           borderRadius={2}
-          gap={2}
           my={2}
         >
           {techTypes.map((item) => {
             return (
               <Stack
                 component={motion.div}
-                width="30%"
                 alignItems="center"
                 p={1}
                 borderRadius={2}
                 key={item.name}
                 onClick={() => setSelectedType(item)}
                 position="relative"
+                flex={1}
+                width='max-content'
               >
                 {selectedType === item && (
                   <motion.span
@@ -99,7 +98,7 @@ const TechStack = () => {
                   />
                 )}
                 <SemiboldText
-                  variant="h6"
+                  variant="body1"
                   sx={{
                     position: "relative",
                     zIndex: 3,
@@ -112,7 +111,7 @@ const TechStack = () => {
             );
           })}
         </Stack>
-        <Grid container mt={2}  >
+        <Grid container mt={2}>
           {filteredArray.map((item, i) => {
             return (
               <Grid
