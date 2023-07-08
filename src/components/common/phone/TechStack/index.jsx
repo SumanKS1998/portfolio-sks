@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const TechStack = () => {
   const [filteredArray, setFilteredArray] = useState([]);
-  const [selectedType, setSelectedType] = useState("all");
+  const [selectedType, setSelectedType] = useState("All");
   const techTypes = ["All", "Front-end", "Back-end"];
   const animationVariant = {
     initial: { opacity: 0, y: 100 },
@@ -111,56 +111,58 @@ const TechStack = () => {
             );
           })}
         </Stack>
-        <Grid container mt={2}>
-          {filteredArray.map((item, i) => {
-            return (
-              <Grid
-                key={item.name}
-                item
-                xs={4}
-                sx={{ position: "relative" }}
-                component={motion.div}
-                initial={animationVariant.initial}
-                whileInView={animationVariant.animate}
-                layout
-              >
-                <Stack
-                  alignItems="center"
-                  justifyContent="center"
-                  bgcolor="#1b1c1c87"
-                  sx={{
-                    position: "relative",
-                    zIndex: 4,
-                    m: 1,
-                  }}
-                  py={5}
-                >
-                  <Box
-                    component={"img"}
-                    src={item.icon}
-                    sx={{ height: "50px", width: "50px" }}
-                  />
-                </Stack>
-                <Stack
+        <Stack minHeight={"40vh"}>
+          <Grid container mt={2}>
+            {filteredArray.map((item, i) => {
+              return (
+                <Grid
+                  key={item.name}
+                  item
+                  xs={4}
+                  sx={{ position: "relative" }}
                   component={motion.div}
-                  sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%,-50%)",
-                  }}
-                  initial={{ filter: "blur(20px)" }}
+                  initial={animationVariant.initial}
+                  whileInView={animationVariant.animate}
+                  layout
                 >
-                  <Box
-                    component={"img"}
-                    src={item.icon}
-                    sx={{ height: "50px", width: "50px" }}
-                  />
-                </Stack>
-              </Grid>
-            );
-          })}
-        </Grid>
+                  <Stack
+                    alignItems="center"
+                    justifyContent="center"
+                    bgcolor="#1b1c1c87"
+                    sx={{
+                      position: "relative",
+                      zIndex: 4,
+                      m: 1,
+                    }}
+                    py={5}
+                  >
+                    <Box
+                      component={"img"}
+                      src={item.icon}
+                      sx={{ height: "50px", width: "50px" }}
+                    />
+                  </Stack>
+                  <Stack
+                    component={motion.div}
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%,-50%)",
+                    }}
+                    initial={{ filter: "blur(20px)" }}
+                  >
+                    <Box
+                      component={"img"}
+                      src={item.icon}
+                      sx={{ height: "50px", width: "50px" }}
+                    />
+                  </Stack>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Stack>
       </Stack>
     </section>
   );
