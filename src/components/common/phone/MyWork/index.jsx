@@ -4,6 +4,8 @@ import React from "react";
 import { HeadingText, SemiboldText } from "../../../styles/fonts";
 import Images from "../../../../assets";
 import { constants } from "../../../../constants";
+import { ArrowForwardIos } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const MyWorkPhone = () => {
   const animationVariant = {
@@ -31,6 +33,7 @@ const MyWorkPhone = () => {
         component={motion.div}
         initial={animationVariant.initial}
         whileInView={animationVariant.animate}
+        viewport={{ once: true }}
       >
         My Work
       </HeadingText>
@@ -39,6 +42,7 @@ const MyWorkPhone = () => {
         component={motion.div}
         initial={animationVariant.initial}
         whileInView={animationVariant.animate}
+        viewport={{ once: true }}
       >
         Explore some of the exciting projects I've worked on throughout my
         career.✨
@@ -50,6 +54,7 @@ const MyWorkPhone = () => {
               component={motion.div}
               initial={animationVariant.initial}
               whileInView={animationVariant.animate}
+              viewport={{ once: true }}
               key={i}
               sx={{
                 bgcolor: "#9fe870",
@@ -60,10 +65,11 @@ const MyWorkPhone = () => {
               alignItems="center"
               justifyContent="center"
             >
-              <img
-                alt="Niyasa Global"
+              <Box
+                component="img"
+                alt={item.name}
                 src={item.image}
-                style={{ objectFit: "contain", height: "100%" }}
+                sx={{ objectFit: "contain", height: "100%", width: "100%" }}
               />
 
               <Stack
@@ -79,16 +85,24 @@ const MyWorkPhone = () => {
                 }}
               >
                 <Stack
+                  component={motion.div}
                   sx={{ bgcolor: "#54616c", borderRadius: "100vmax", p: 1 }}
                   mx="auto"
                   direction="row"
                   gap="8px"
+                  initial={{ height: "0", width: "0" }}
+                  whileInView={{
+                    width: "auto",
+                    height: "auto",
+                  }}
                 >
                   {item.techStack.map((tech) => {
                     return (
                       <Stack
                         key={tech.name}
                         sx={{ bgcolor: "#111111", borderRadius: "100vmax" }}
+                        alignItems="center"
+                        justifyContent="center"
                       >
                         <Box
                           component="img"
@@ -96,8 +110,8 @@ const MyWorkPhone = () => {
                           src={tech.icon}
                           sx={{
                             objectFit: "contain",
-                            height: "50px",
-                            width: "50px",
+                            height: "30px",
+                            width: "30px",
                           }}
                         />
                       </Stack>
@@ -105,6 +119,26 @@ const MyWorkPhone = () => {
                   })}
                 </Stack>
               </Stack>
+              <Link to={item.link} target="_blank">
+                <Stack
+                  component={motion.div}
+                  sx={{
+                    bgcolor: "#111111",
+                    borderRadius: "100vmax",
+                    position: `absolute`,
+                    top: "10px",
+                    right: "10px",
+                  }}
+                  alignItems="center"
+                  justifyContent="center"
+                  initial={{ height: "30px", width: "30px" }}
+                  whileInView={{
+                    width: "60px",
+                  }}
+                >
+                  <ArrowForwardIos sx={{ color: "#fff" }} />
+                </Stack>
+              </Link>
             </Stack>
           );
         })}
