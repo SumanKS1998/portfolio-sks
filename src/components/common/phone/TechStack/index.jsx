@@ -80,7 +80,7 @@ const TechStack = () => {
                 onClick={() => setSelectedType(item)}
                 position="relative"
                 flex={1}
-                width='max-content'
+                width="max-content"
               >
                 {selectedType === item && (
                   <motion.span
@@ -129,9 +129,8 @@ const TechStack = () => {
                   justifyContent="center"
                   bgcolor="#1b1c1c87"
                   sx={{
-                    backdropFilter: "blur(20px)",
                     position: "relative",
-                    zIndex: 2,
+                    zIndex: 4,
                     m: 1,
                   }}
                   py={5}
@@ -150,11 +149,12 @@ const TechStack = () => {
                     left: "50%",
                     transform: "translate(-50%,-50%)",
                   }}
+                  initial={{ filter: "blur(20px)" }}
                 >
                   <Box
                     component={"img"}
                     src={item.icon}
-                    sx={{ height: "80px", width: "80px" }}
+                    sx={{ height: "50px", width: "50px" }}
                   />
                 </Stack>
               </Grid>
