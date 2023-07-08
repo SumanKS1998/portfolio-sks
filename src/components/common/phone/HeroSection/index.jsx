@@ -135,7 +135,7 @@ const HeroSectionPhone = () => {
             src={image}
             alt="Suman Kumar Sinha"
             sx={{
-              height: "40vh",
+              height: "30vh",
               bgcolor: "#9fe870",
               mt: 1,
               mb: 1.5,
