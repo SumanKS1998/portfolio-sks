@@ -61,6 +61,7 @@ const MyWorkPhone = () => {
                 height: "40vh",
                 borderRadius: "24px",
                 position: "relative",
+                width: "100%",
               }}
               alignItems="center"
               justifyContent="center"
