@@ -53,7 +53,6 @@ const HeroSectionPhone = () => {
     return (
       <nav role="navigation">
         <Stack
-          width="95vw"
           mx="auto"
           height="100px"
           alignItems={"center"}
@@ -105,6 +104,7 @@ const HeroSectionPhone = () => {
         <Stack
           direction="row"
           overflow={loadingAnimationComplete ? "visible" : "hidden"}
+          justifyContent="space-between"
         >
           {text.map((item, i) => {
             return (
@@ -150,8 +150,8 @@ const HeroSectionPhone = () => {
   const renderDescription = () => {
     return (
       <Stack
-        gap="48px"
-        width={{ xs: "90% ", xl: "500px " }}
+        gap="24px"
+        width={{ xs: "100% ", xl: "500px " }}
         overflow="hidden"
         mx={"auto"}
         mt={"32px"}
@@ -164,7 +164,7 @@ const HeroSectionPhone = () => {
           sx={{
             lineHeight: "120%",
             fontSize: { xs: "18px", xl: "22px" },
-            textAlign: "center",
+            textAlign: "justify",
           }}
         >
           <SemiboldText
@@ -216,14 +216,13 @@ const HeroSectionPhone = () => {
     );
   };
   return (
-    <Stack minHeight="100vh">
+    <Stack minHeight="100vh" px={2}>
       {renderNavbar()}
 
       <section role="main">
         <Stack
           mx="auto"
           justifyContent={"space-between"}
-          alignItems={"center"}
           component={motion.div}
           variants={entryVariant}
           sx={{ overflow: "hidden" }}
