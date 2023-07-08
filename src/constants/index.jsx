@@ -57,6 +57,7 @@ export const tools = [
     link: "https://reactjs.org/",
     icon: Images.ReactLogo,
     description: "A JavaScript library for building user interfaces.",
+    type: "Front-end",
   },
   {
     name: "JavaScript",
@@ -64,6 +65,7 @@ export const tools = [
     icon: Images.Javascript,
     description:
       "A high-level programming language commonly used for web development.",
+    type: "Front-end",
   },
   {
     name: "Material UI",
@@ -71,6 +73,7 @@ export const tools = [
     icon: Images.MaterialUi,
     description:
       "A popular React UI framework that provides pre-built components following the Material Design guidelines.",
+    type: "Front-end",
   },
   {
     name: "Firebase",
@@ -78,6 +81,7 @@ export const tools = [
     icon: Images.Firebase,
     description:
       "A comprehensive platform for building web and mobile applications, offering various backend services.",
+    type: "Back-end",
   },
   {
     name: "Tailwind",
@@ -85,6 +89,7 @@ export const tools = [
     icon: Images.Tailwind,
     description:
       "A utility-first CSS framework that provides a set of pre-defined classes to style web elements.",
+    type: "Front-end",
   },
   {
     name: "TypeScript",
@@ -92,6 +97,7 @@ export const tools = [
     icon: Images.Typescript,
     description:
       "A typed superset of JavaScript that adds static types to the language.",
+    type: "Front-end",
   },
   {
     name: "Expo",
@@ -99,6 +105,7 @@ export const tools = [
     icon: Images.Expo,
     description:
       "A set of tools and services for building cross-platform mobile applications with React Native.",
+    type: "Front-end",
   },
   {
     name: "Framer Motion",
@@ -106,6 +113,7 @@ export const tools = [
     icon: Images.FramerMotion,
     description:
       "A React library for creating smooth and interactive animations.",
+    type: "Front-end",
   },
   {
     name: "Node.js",
@@ -113,6 +121,7 @@ export const tools = [
     icon: Images.NodeJs,
     description:
       "A runtime environment for executing JavaScript code outside the browser, typically on the server-side.",
+    type: "Back-end",
   },
   {
     name: "Next.js",
@@ -120,6 +129,7 @@ export const tools = [
     icon: Images.NextJS,
     description:
       "A React framework for building server-side rendered (SSR) and statically generated (SSG) websites.",
+    type: "Front-end",
   },
   {
     name: "HTML",
@@ -127,6 +137,7 @@ export const tools = [
     icon: Images.HTML,
     description:
       "The standard markup language for creating web pages and applications.",
+    type: "Front-end",
   },
   {
     name: "CSS",
@@ -134,6 +145,7 @@ export const tools = [
     icon: Images.CSS,
     description:
       "The style sheet language used for describing the visual presentation of a document written in HTML.",
+    type: "Front-end",
   },
 ];
 

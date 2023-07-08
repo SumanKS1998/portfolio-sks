@@ -5,6 +5,7 @@ import MyWork from "../../common/MyWork";
 import Footer from "../../common/Footer";
 import HeroSectionPhone from "../../common/phone/HeroSection";
 import MyWorkPhone from "../../common/phone/MyWork";
+import TechStack from "../../common/phone/TechStack";
 const Home = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -21,7 +22,7 @@ const Home = () => {
     return (
       <>
         <HeroSectionPhone />
-        <MyWorkPhone /> <Footer />
+        <MyWorkPhone /> 
       </>
     );
   };
@@ -34,6 +35,7 @@ const Home = () => {
       }}
     >
       {isDesktop ? renderDesktopContent() : renderPhoneContent()}
+      {!isDesktop && <TechStack />}
     </Stack>
   );
 };

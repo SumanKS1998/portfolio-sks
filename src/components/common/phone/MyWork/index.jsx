@@ -2,8 +2,7 @@ import { Box, Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
 import { HeadingText, SemiboldText } from "../../../styles/fonts";
-import Images from "../../../../assets";
-import { constants } from "../../../../constants";
+ import { constants } from "../../../../constants";
 import { ArrowForwardIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -23,7 +22,7 @@ const MyWorkPhone = () => {
     <section title="My Work">
       <Stack
         component={motion.div}
-        my={"32px"}
+        my={"64px"}
         mx={2}
         variants={animationVariant}
         initial={"initial"}
