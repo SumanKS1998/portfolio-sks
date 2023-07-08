@@ -1,7 +1,7 @@
 import { Box, Button, IconButton, Stack } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { HeadingText, RegularText, SemiboldText } from "../../../styles/fonts";
-import { motion, useAnimationControls } from "framer-motion";
+import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import { constants } from "../../../../constants/index";
 import AppContext from "../../../../context/AppContext";
 import Images from "../../../../assets";
@@ -135,7 +135,7 @@ const HeroSectionPhone = () => {
             src={image}
             alt="Suman Kumar Sinha"
             sx={{
-              height: "200px",
+              height: "40vh",
               bgcolor: "#9fe870",
               mt: 1,
               mb: 1.5,
@@ -150,7 +150,6 @@ const HeroSectionPhone = () => {
   const renderDescription = () => {
     return (
       <Stack
-        gap="24px"
         width={{ xs: "100% ", xl: "500px " }}
         overflow="hidden"
         mx={"auto"}
@@ -182,57 +181,33 @@ const HeroSectionPhone = () => {
           building exceptional digital experiences on the web. My current focus
           revolves around crafting remarkable products at Ellenox.
         </RegularText>
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          component={motion.div}
-          variants={entryVariant}
-        >
-          <SemiboldText sx={{ color: "#777777" }} variant="h6">
-            Scroll Down
-          </SemiboldText>
-          <IconButton
-            sx={{
-              height: "40px",
-              width: "40px",
-              overflow: "hidden",
-            }}
-          >
-            <motion.div
-              initial={{ y: "-100%" }}
-              animate={{
-                y: ["-100%", "0%", "5%", "-5%", "100%"],
-                transition: {
-                  duration: 1.3,
-                  repeat: "infinity",
-                },
-              }}
-            >
-              <ArrowDownward sx={{ color: "#777777", fontSize: "30px" }} />
-            </motion.div>
-          </IconButton>
-        </Stack>
       </Stack>
     );
   };
   return (
     <Stack minHeight="100vh" px={2}>
-      {renderNavbar()}
+      <AnimatePresence>
+        {!loadingAnimationComplete && (
+          <>
+            {renderNavbar()}
 
-      <section role="main">
-        <Stack
-          mx="auto"
-          justifyContent={"space-between"}
-          component={motion.div}
-          variants={entryVariant}
-          sx={{ overflow: "hidden" }}
-        >
-          {renderTitle({ text: headingTextOne })}
-          {renderTitle({ image: Images.SumanImage })}
-          {renderTitle({ text: headingTextTwo })}
-        </Stack>
-        {renderDescription()}
-      </section>
+            <section role="main">
+              <Stack
+                mx="auto"
+                justifyContent={"space-between"}
+                component={motion.div}
+                variants={entryVariant}
+                sx={{ overflow: "hidden" }}
+              >
+                {renderTitle({ text: headingTextOne })}
+                {renderTitle({ image: Images.SumanImage })}
+                {renderTitle({ text: headingTextTwo })}
+              </Stack>
+              {renderDescription()}
+            </section>
+          </>
+        )}
+      </AnimatePresence>
     </Stack>
   );
 };

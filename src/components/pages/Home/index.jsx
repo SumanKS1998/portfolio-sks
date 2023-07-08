@@ -1,10 +1,34 @@
 import React from "react";
 import HeroSection from "../../common/HeroSection";
-import { Stack } from "@mui/material";
+import { Stack, useMediaQuery } from "@mui/material";
 import MyWork from "../../common/MyWork";
 import Footer from "../../common/Footer";
 import HeroSectionPhone from "../../common/phone/HeroSection";
+import MyWorkPhone from "../../common/phone/MyWork";
+import { ScrollerMotion } from "scroller-motion";
 const Home = () => {
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  const renderDesktopContent = () => {
+    return (
+      <>
+        <HeroSection />
+        <MyWork /> <Footer />
+      </>
+    );
+  };
+
+  const renderPhoneContent = () => {
+    return (
+      <>
+        <ScrollerMotion>
+          <HeroSectionPhone />
+          <MyWorkPhone /> <Footer />
+        </ScrollerMotion>
+      </>
+    );
+  };
+
   return (
     <Stack
       width="100vw"
@@ -12,14 +36,7 @@ const Home = () => {
         bgcolor: "#111111",
       }}
     >
-      <Stack sx={{ display: { xs: "none", md: "flex" } }}>
-        <HeroSection />
-      </Stack>
-      <Stack sx={{ display: { xs: "flex", md: "none" } }}>
-        <HeroSectionPhone />
-      </Stack>
-      <MyWork />
-      <Footer />
+      {isDesktop ? renderDesktopContent() : renderPhoneContent()}
     </Stack>
   );
 };

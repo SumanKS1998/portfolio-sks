@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, useMediaQuery } from "@mui/material";
 import { motion, useAnimationControls } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
 import { HeadingText } from "../../styles/fonts";

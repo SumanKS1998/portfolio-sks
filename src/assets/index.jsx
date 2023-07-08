@@ -15,7 +15,7 @@ import NodeJs from "./svgs/nodejs.svg";
 import NextJS from "./svgs/next-js.svg";
 import CSS from "./svgs/css.svg";
 import HTML from "./svgs/html.svg";
-
+ 
 const Images = {
   SumanImage,
   StarSvg,
