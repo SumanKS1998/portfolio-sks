@@ -8,15 +8,14 @@ import AppContext from "../../../context/AppContext";
 const index = ({ appLoading, setLoadingAnimationComplete }) => {
   const { loadingAnimationComplete } = useContext(AppContext);
   const controls = useAnimationControls();
-  const [loadingSplines, setLoadingSplines] = useState(10);
-   const animateOutVariant = {
+  const [loadingSplines, setLoadingSplines] = useState(30);
+  const animateOutVariant = {
     hidden: {
       scale: 0.4,
     },
     visible: {
-      scale: 250,
-      // x: "-200%",
-      transition: { ease: constants[`transitions`], duration: 1.2 },
+      scale: 230,
+      transition: { ease: constants[`transitions`], duration: 1.4 },
     },
   };
   useEffect(() => {
@@ -27,7 +26,7 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
       setLoadingSplines(100);
     }
   }, [appLoading]);
- 
+
   return (
     <>
       {loadingAnimationComplete && (

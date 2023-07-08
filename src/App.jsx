@@ -39,22 +39,7 @@ function App() {
 
   return (
     <AppContext.Provider value={contextValue}>
-      <Stack p={2} alignItems="center" display={{ xs: "flex", md: "none" }}>
-        <iframe
-          src="https://giphy.com/embed/ThrM4jEi2lBxd7X2yz"
-          width="300"
-          height="350"
-          class="giphy-embed"
-          allowFullScreen
-        ></iframe>
-        <FooterText sx={{ color: "#f3feee" }} variant="h6" textAlign={"center"}>
-          Please use the website on a desktop or larger screen for now. I am
-          currently working on the mobile responsiveness.
-          <br /> Thank you for your understanding!
-        </FooterText>
-      </Stack>
-
-      <Stack display={{ xs: "none", md: "flex" }}>
+      <Stack>
         <ThemeProvider theme={theme}>
           <Loader
             appLoading={appLoading}

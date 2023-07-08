@@ -46,7 +46,7 @@ export function ParallaxText({ children, direction }) {
   const directionFactor = useRef(1);
 
   useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * directionOfScroll * (delta / 1000);
+    let moveBy = directionFactor.current * directionOfScroll * (delta / 3000);
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
     } else if (velocityFactor.get() > 0) {

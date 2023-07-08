@@ -13,7 +13,6 @@ const HeroSection = () => {
   const [firstAnimationOver, setFirstAnimationOver] = useState(false);
   const [contactBtnHovered, setContedtBtnHovered] = useState(false);
   const headingTextOne = `FRONT`.split("");
-  const headingTextSubOne = `——`.split("");
   const headingTextSubTwo = `END`.split("");
   const headingTextTwo = `DEVELOPER`.split("");
   const renderTitle = ({ text, fontSize, image }) => {
@@ -97,77 +96,58 @@ const HeroSection = () => {
       <AnimatePresence>
         {!loadingAnimationComplete && (
           <>
-            <Stack
-              width="95vw"
-              mx="auto"
-              height="100px"
-              alignItems={"center"}
-              direction="row"
-              justifyContent={"space-between"}
-              component={motion.div}
-              variants={entryContainerVariant}
-              initial="initial"
-              animate="animate"
-              overflow="hidden"
-            >
-              <Stack variants={entryVariant} component={motion.div}>
-                <SemiboldText>SUMAN KUMAR SINHA</SemiboldText>
-              </Stack>
+            <nav role="navigation">
               <Stack
+                width="95vw"
+                mx="auto"
+                height="100px"
+                alignItems={"center"}
                 direction="row"
-                gap="40px"
-                variants={entryVariant}
+                justifyContent={"space-between"}
                 component={motion.div}
+                variants={entryContainerVariant}
+                initial="initial"
+                animate="animate"
+                overflow="hidden"
               >
-                <SemiboldText>
-                  AVAILABLE FOR FREELANCE
-                  <br /> WORK FROM JULY 2023
-                </SemiboldText>
-                <Button
-                  sx={{ textTransform: "inherit" }}
-                  onMouseOver={() => setContedtBtnHovered(true)}
-                  onMouseLeave={() => setContedtBtnHovered(false)}
-                  disableRipple
-                  disableTouchRipple
-                  disableFocusRipple
+                <Stack variants={entryVariant} component={motion.div}>
+                  <SemiboldText>SUMAN KUMAR SINHA</SemiboldText>
+                </Stack>
+                <Stack
+                  direction="row"
+                  gap="40px"
+                  variants={entryVariant}
+                  component={motion.div}
                 >
-                  <Stack
-                    justifyContent="center"
-                    direction="row"
-                    alignItems="center"
-                    width="200px"
-                    position="relative"
-                    bgcolor="#ffffe3"
-                    borderRadius="100vmax"
-                    py={0.5}
+                  <SemiboldText>
+                    AVAILABLE FOR FREELANCE
+                    <br /> WORK FROM JULY 2023
+                  </SemiboldText>
+                  <Button
+                    sx={{ textTransform: "inherit" }}
+                    onMouseOver={() => setContedtBtnHovered(true)}
+                    onMouseLeave={() => setContedtBtnHovered(false)}
+                    disableRipple
+                    disableTouchRipple
+                    disableFocusRipple
                   >
-                    <HeadingText variant="h6" sx={{ color: "#111111" }}>
-                      Contact
-                    </HeadingText>
-                    {!contactBtnHovered && (
-                      <Stack
-                        component={motion.div}
-                        width="40px"
-                        bgcolor="#D6FB41"
-                        height="40px"
-                        alignItems="center"
-                        justifyContent="center"
-                        borderRadius="100vmax"
-                        position="absolute"
-                        right="0"
-                      >
-                        <ArrowForwardIos sx={{ color: "#111111" }} />
-                      </Stack>
-                    )}
-                    <AnimatePresence>
-                      {contactBtnHovered && (
+                    <Stack
+                      justifyContent="center"
+                      direction="row"
+                      alignItems="center"
+                      width="200px"
+                      position="relative"
+                      bgcolor="#ffffe3"
+                      borderRadius="100vmax"
+                      py={0.5}
+                    >
+                      <HeadingText variant="h6" sx={{ color: "#111111" }}>
+                        Contact
+                      </HeadingText>
+                      {!contactBtnHovered && (
                         <Stack
                           component={motion.div}
-                          initial={{ width: "40px" }}
-                          animate={{
-                            width: "100%",
-                          }}
-                          exit={{ width: "40px" }}
+                          width="40px"
                           bgcolor="#D6FB41"
                           height="40px"
                           alignItems="center"
@@ -175,16 +155,38 @@ const HeroSection = () => {
                           borderRadius="100vmax"
                           position="absolute"
                           right="0"
-                          onClick={getToBottom}
                         >
                           <ArrowForwardIos sx={{ color: "#111111" }} />
                         </Stack>
                       )}
-                    </AnimatePresence>
-                  </Stack>
-                </Button>
-              </Stack>
-            </Stack>{" "}
+                      <AnimatePresence>
+                        {contactBtnHovered && (
+                          <Stack
+                            component={motion.div}
+                            initial={{ width: "40px" }}
+                            animate={{
+                              width: "100%",
+                            }}
+                            exit={{ width: "40px" }}
+                            bgcolor="#D6FB41"
+                            height="40px"
+                            alignItems="center"
+                            justifyContent="center"
+                            borderRadius="100vmax"
+                            position="absolute"
+                            right="0"
+                            onClick={getToBottom}
+                          >
+                            <ArrowForwardIos sx={{ color: "#111111" }} />
+                          </Stack>
+                        )}
+                      </AnimatePresence>
+                    </Stack>
+                  </Button>
+                </Stack>
+              </Stack>{" "}
+            </nav>
+            <main role="marquee">
             <Stack
               flex={1}
               justifyContent="center"
@@ -285,6 +287,7 @@ const HeroSection = () => {
                 </Stack>{" "}
               </ParallaxText>
             </Stack>
+            </main>
           </>
         )}
       </AnimatePresence>
