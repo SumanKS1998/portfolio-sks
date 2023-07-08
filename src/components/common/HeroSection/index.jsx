@@ -33,7 +33,7 @@ const HeroSection = () => {
                 }}
                 whileHover={{
                   scale: 1.02,
-                  color: ["#ffffe3", "#d6fb41"],
+                  color: ["#ffffe3", "#9fe870"],
                 }}
                 initial={{ opacity: 0, y: 400 }}
                 animate={{
@@ -58,7 +58,7 @@ const HeroSection = () => {
         <Box
           component="img"
           src={image}
-          sx={{ height: "16vw", bgcolor: "#d6fb41", mt: 1 }}
+          sx={{ height: "16vw", bgcolor: "#9fe870", mt: 1 }}
         />
       );
     }
@@ -148,7 +148,7 @@ const HeroSection = () => {
                         <Stack
                           component={motion.div}
                           width="40px"
-                          bgcolor="#D6FB41"
+                          bgcolor="#9fe870"
                           height="40px"
                           alignItems="center"
                           justifyContent="center"
@@ -156,7 +156,7 @@ const HeroSection = () => {
                           position="absolute"
                           right="0"
                         >
-                          <ArrowForwardIos sx={{ color: "#111111" }} />
+                          <ArrowForwardIos sx={{ color: "#ffffe3" }} />
                         </Stack>
                       )}
                       <AnimatePresence>
@@ -168,7 +168,7 @@ const HeroSection = () => {
                               width: "100%",
                             }}
                             exit={{ width: "40px" }}
-                            bgcolor="#D6FB41"
+                            bgcolor="#9fe870"
                             height="40px"
                             alignItems="center"
                             justifyContent="center"
@@ -177,7 +177,7 @@ const HeroSection = () => {
                             right="0"
                             onClick={getToBottom}
                           >
-                            <ArrowForwardIos sx={{ color: "#111111" }} />
+                            <ArrowForwardIos sx={{ color: "#ffffe3" }} />
                           </Stack>
                         )}
                       </AnimatePresence>

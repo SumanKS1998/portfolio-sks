@@ -63,7 +63,7 @@ const Footer = () => {
               alignItems="center"
               justifyContent={"center"}
               component={motion.div}
-              whileHover={{ borderColor: "#ccfc00", color: "#ccfc00" }}
+              whileHover={{ borderColor: "#9fe870", color: "#9fe870" }}
             >
               <HeadingText
                 variant="h5"
@@ -102,7 +102,7 @@ const Footer = () => {
             <FooterText
               variant="h3"
               textAlign={"center"}
-              sx={{ color: "#ccfc00" }}
+              sx={{ color: "#9fe870" }}
             >
               sinhasumank41@gmail.com
             </FooterText>

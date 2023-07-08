@@ -284,7 +284,7 @@ const MyWork = () => {
 
       {renderFrames({
         zIndex: 2,
-        bgcolor: "#d6fb41",
+        bgcolor: "#9fe870",
         top: 0,
         marqueeText: "Niyasa Global 🌍 Study Abroad",
         parallaxDirection: true,
@@ -320,7 +320,7 @@ const MyWork = () => {
             initial={{ scale: 0.2 }}
             animate={{ scale: 1 }}
           >
-            <HeadingText variant="h4" sx={{ color: "#d6fb41" }}>
+            <HeadingText variant="h4" sx={{ color: "#9fe870" }}>
               FREELANCING
             </HeadingText>
           </Stack>
@@ -340,7 +340,7 @@ const MyWork = () => {
             initial={{ scale: 0.2 }}
             animate={{ scale: 1 }}
           >
-            <HeadingText variant="h4" sx={{ color: "#d6fb41" }}>
+            <HeadingText variant="h4" sx={{ color: "#9fe870" }}>
               Built at{" "}
               <Box component="span" sx={{ color: "#1f9e8c" }}>
                 Ellenox
