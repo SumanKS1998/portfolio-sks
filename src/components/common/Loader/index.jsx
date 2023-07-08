@@ -14,7 +14,7 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
       scale: 0.4,
     },
     visible: {
-      scale: 230,
+      scale: 225,
       transition: { ease: constants[`transitions`], duration: 1.4 },
     },
   };

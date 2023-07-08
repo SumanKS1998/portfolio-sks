@@ -113,7 +113,7 @@ const HeroSectionPhone = () => {
                 custom={i}
                 whileHover={{
                   scale: 1.02,
-                  color: ["#ffffe3", "#d6fb41"],
+                  color: ["#ffffe3", "#9fe870"],
                 }}
                 initial={{ opacity: 0, y: 400 }}
                 animate={HeroControl}
@@ -135,8 +135,8 @@ const HeroSectionPhone = () => {
             src={image}
             alt="Suman Kumar Sinha"
             sx={{
-              height: "30vh",
               bgcolor: "#9fe870",
+              height: "30vh",
               mt: 1,
               mb: 1.5,
               objectFit: "cover",

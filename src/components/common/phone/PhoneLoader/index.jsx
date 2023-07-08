@@ -14,7 +14,7 @@ const PhoneLoader = ({ setLoadingAnimationComplete }) => {
       setTimeout(() => {
         setNumber(newNum);
         loadPercent.set(newNum);
-      }, 10);
+      }, 5);
     }
   }, [number]);
   return (

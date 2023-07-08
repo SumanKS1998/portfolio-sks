@@ -15,7 +15,9 @@ import NodeJs from "./svgs/nodejs.svg";
 import NextJS from "./svgs/next-js.svg";
 import CSS from "./svgs/css.svg";
 import HTML from "./svgs/html.svg";
- 
+import Niyasa from "./images/niyasa.png";
+import Why from "./images/why.png";
+
 const Images = {
   SumanImage,
   StarSvg,
@@ -33,6 +35,8 @@ const Images = {
   NextJS,
   CSS,
   HTML,
+  Niyasa,
+  Why
 };
 
 export default Images;

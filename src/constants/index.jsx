@@ -10,6 +10,25 @@ export const constants = {
         "Explore endless opportunities for studying abroad and visa services at Niyasa Global. Expert guidance, visa assistance, and valuable resources. Unlock a world of possibilities today!",
       link: `https://eduniyasa.in/`,
       type: "web",
+      image: Images.Niyasa,
+      techStack: [
+        {
+          name: "React",
+          icon: Images.ReactLogo,
+        },
+        {
+          name: "Firebase",
+          icon: Images.Firebase,
+        },
+        {
+          name: "Framer Motion",
+          icon: Images.FramerMotion,
+        },
+        {
+          name: "Material UI",
+          icon: Images.MaterialUi,
+        },
+      ],
     },
     {
       name: "WHY Emotional Support &Therapy",
@@ -18,6 +37,17 @@ export const constants = {
         "Get the understanding and guidance you need to navigate life's challenges, anytime, anywhere. Find solace, healing, and empowerment with WHY.",
       link: `https://play.google.com/store/apps/details?id=com.wehearyou&hl=en-IN`,
       type: "app",
+      image: Images.Why,
+      techStack: [
+        {
+          name: "Expo",
+          icon: Images.Expo,
+        },
+        {
+          name: "Firebase",
+          icon: Images.Firebase,
+        },
+      ],
     },
   ],
 };
