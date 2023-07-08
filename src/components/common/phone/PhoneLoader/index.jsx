@@ -58,7 +58,7 @@ const PhoneLoader = ({ setLoadingAnimationComplete }) => {
       >
         {number}
       </HeadingText>
-      <Stack sx={{ position: "absolute", bottom: "-10%" }}>
+      <Stack sx={{ position: "absolute", bottom: "-4%" }}>
         {loadComplete ? (
           <motion.svg
             layoutId="under"
