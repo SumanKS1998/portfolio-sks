@@ -117,7 +117,7 @@ const TechStack = () => {
               <Grid
                 key={item.name}
                 item
-                xs={6}
+                xs={4}
                 sx={{ position: "relative" }}
                 component={motion.div}
                 initial={animationVariant.initial}
@@ -139,7 +139,7 @@ const TechStack = () => {
                   <Box
                     component={"img"}
                     src={item.icon}
-                    sx={{ height: "80px", width: "80px" }}
+                    sx={{ height: "50px", width: "50px" }}
                   />
                 </Stack>
                 <Stack
