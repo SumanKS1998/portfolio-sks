@@ -108,8 +108,7 @@ const TechStack = () => {
                   sx={{
                     position: "relative",
                     zIndex: 3,
-                    // color: "#000",
-                  }}
+                   }}
                 >
                   {item}
                 </SemiboldText>
@@ -128,6 +127,7 @@ const TechStack = () => {
                 component={motion.div}
                 initial={animationVariant.initial}
                 whileInView={animationVariant.animate}
+                viewport={{ once: true }}
                 layout
               >
                 <Stack

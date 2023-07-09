@@ -55,6 +55,7 @@ const FooterPhone = () => {
         component={motion.div}
         initial={animationVariant.initial}
         whileInView={animationVariant.animate}
+        viewport={{ once: true }}
         variant="h4"
         textAlign={"center"}
         sx={{ color: "gray" }}
@@ -76,12 +77,13 @@ const FooterPhone = () => {
           component={motion.div}
           initial={animationVariant.initial}
           whileInView={animationVariant.animate}
-          width="100%"
+          viewport={{ once: true }}
+          width="95%"
         >
           <Stack p={1} px={3} borderRadius={4} sx={{ bgcolor: "#3232345e" }}>
             <FooterText
               textAlign={"center"}
-              sx={{ color: "#9fe870", fontSize: "22px" }}
+              sx={{ color: "#9fe870", fontSize: "24px" }}
             >
               sinhasumank41@gmail.com
             </FooterText>
@@ -95,6 +97,7 @@ const FooterPhone = () => {
           component={motion.div}
           initial={animationVariant.initial}
           whileInView={animationVariant.animate}
+          viewport={{ once: true }}
           justifyContent={"center"}
         >
           {copied ? (
@@ -153,6 +156,7 @@ const FooterPhone = () => {
         component={motion.div}
         initial={animationVariant.initial}
         whileInView={animationVariant.animate}
+        viewport={{ once: true }}
         my={"32px"}
       >
         <svg
@@ -199,6 +203,7 @@ const FooterPhone = () => {
               whileHover={{ borderColor: "#9fe870", color: "#9fe870" }}
               initial={animationVariant.initial}
               whileInView={animationVariant.animate}
+              viewport={{ once: true }}
             >
               <HeadingText
                 variant="body1"
@@ -247,15 +252,14 @@ const FooterPhone = () => {
         borderRadius={"32px 32px 0 0"}
         px={2}
         overflow="hidden"
-        gap='16px'
+        gap="16px"
       >
-      
-          {renderHeading()}
-          {renderEmail()}
-          {renderDivider()}
-          {renderButtons()}
-          {renderMarquee()}
-       </Stack>
+        {renderHeading()}
+        {renderEmail()}
+        {renderDivider()}
+        {renderButtons()}
+        {renderMarquee()}
+      </Stack>
     </footer>
   );
 };
