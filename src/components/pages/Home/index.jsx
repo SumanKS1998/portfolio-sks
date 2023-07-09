@@ -25,6 +25,8 @@ const Home = () => {
         <HeroSectionPhone />
 
         <MyWorkPhone />
+        <TechStack />
+        <FooterPhone />
       </>
     );
   };
@@ -37,14 +39,6 @@ const Home = () => {
       }}
     >
       {isDesktop ? renderDesktopContent() : renderPhoneContent()}
-      {!isDesktop && (
-        <Stack sx={{ position: "relative", height: "200vh" }}>
-          <Stack sx={{ position: "sticky", top: 0 }}>
-            <TechStack />
-          </Stack>
-          <FooterPhone />
-        </Stack>
-      )}
     </Stack>
   );
 };

@@ -180,42 +180,39 @@ const FooterPhone = () => {
     );
   };
   return (
-    // <footer>
-    <Stack
-      bgcolor="#222222"
-      height="max-content"
-      zIndex={999}
-      position="relative"
-      py={4}
-      borderRadius={"32px 32px 0 0"}
-      flex={1}
-      px={3}
-      sx={{}}
-    >
-      <Stack gap="16px" alignItems="center">
-        {renderHeading()}
-        {renderEmail()}
-        {renderDivider()}
-        {renderButtons()}{" "}
-        <Stack
-          sx={{
-             whiteSpace: `nowrap`,
-            bottom: 0,
-          }}
-          component={motion.div}
-        >
-          <FooterMarqueeText
+    <footer>
+      <Stack
+        bgcolor="#222222"
+        height="auto"
+        position="relative"
+        py={4}
+        borderRadius={"32px 32px 0 0"}
+        px={3}
+      >
+        <Stack gap="16px" alignItems="center">
+          {renderHeading()}
+          {renderEmail()}
+          {renderDivider()}
+          {renderButtons()}{" "}
+          <Stack
+            sx={{
+              whiteSpace: `nowrap`,
+              bottom: 0,
+            }}
             component={motion.div}
-            sx={{ fontSize: "120px", color: "#3233344f", lineHeight: "70%" }}
-            variants={marqueeVariants}
-            animate="animate"
           >
-            {new Array(50).fill(0).map((item) => `Let's talk.`)}
-          </FooterMarqueeText>
+            <FooterMarqueeText
+              component={motion.div}
+              sx={{ fontSize: "120px", color: "#3233344f", lineHeight: "70%" }}
+              variants={marqueeVariants}
+              animate="animate"
+            >
+              {new Array(50).fill(0).map((item) => `Let's talk.`)}
+            </FooterMarqueeText>
+          </Stack>
         </Stack>
       </Stack>
-    </Stack>
-    // </footer>
+    </footer>
   );
 };
 
