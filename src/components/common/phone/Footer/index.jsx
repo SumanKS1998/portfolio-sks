@@ -221,26 +221,7 @@ const FooterPhone = () => {
       </Stack>
     );
   };
-  const renderMarquee = () => {
-    return (
-      <Stack
-        sx={{
-          whiteSpace: `nowrap`,
-          bottom: 0,
-        }}
-        component={motion.div}
-      >
-        <FooterMarqueeText
-          component={motion.div}
-          sx={{ fontSize: "120px", color: "#3233344f", lineHeight: "70%" }}
-          variants={marqueeVariants}
-          animate="animate"
-        >
-          {new Array(50).fill(0).map((item) => `Let's talk.`)}
-        </FooterMarqueeText>
-      </Stack>
-    );
-  };
+
   return (
     <footer>
       <Stack
@@ -252,12 +233,12 @@ const FooterPhone = () => {
         px={2}
         overflow="hidden"
         gap="16px"
+        component={motion.div}
       >
         {renderHeading()}
         {renderEmail()}
         {renderDivider()}
         {renderButtons()}
-        {renderMarquee()}
       </Stack>
     </footer>
   );
