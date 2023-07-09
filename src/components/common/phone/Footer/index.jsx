@@ -56,7 +56,7 @@ const FooterPhone = () => {
         initial={animationVariant.initial}
         whileInView={animationVariant.animate}
         variant="h4"
-        textAlign={"left"}
+        textAlign={"center"}
         sx={{ color: "gray" }}
       >
         Got a question, project or want to work together on something? Feel free
@@ -95,6 +95,7 @@ const FooterPhone = () => {
           component={motion.div}
           initial={animationVariant.initial}
           whileInView={animationVariant.animate}
+          justifyContent={"center"}
         >
           {copied ? (
             <Stack
@@ -199,7 +200,7 @@ const FooterPhone = () => {
               initial={animationVariant.initial}
               whileInView={animationVariant.animate}
             >
-              <SemiboldText
+              <HeadingText
                 variant="body1"
                 sx={{
                   color: "inherit",
@@ -209,7 +210,7 @@ const FooterPhone = () => {
                 }}
               >
                 {link.socialPlatform}
-              </SemiboldText>
+              </HeadingText>
             </Stack>
           </Link>
         ))}
