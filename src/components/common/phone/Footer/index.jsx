@@ -221,7 +221,18 @@ const FooterPhone = () => {
       </Stack>
     );
   };
-
+  const renderMarquee = () => {
+    return (
+      <FooterMarqueeText
+        component={motion.div}
+        sx={{ fontSize: "85px", color: "#3233344f", lineHeight: "70%" }}
+        variants={marqueeVariants}
+        animate="animate"
+      >
+        Let's talk.
+      </FooterMarqueeText>
+    );
+  };
   return (
     <footer>
       <Stack
@@ -239,6 +250,7 @@ const FooterPhone = () => {
         {renderEmail()}
         {renderDivider()}
         {renderButtons()}
+        {/* {renderMarquee()} */}
       </Stack>
     </footer>
   );
