@@ -55,9 +55,9 @@ const FooterPhone = () => {
         component={motion.div}
         initial={animationVariant.initial}
         whileInView={animationVariant.animate}
-        variant="h5"
+        variant="h4"
         textAlign={"left"}
-        sx={{ width: "100%", color: "gray" }}
+        sx={{ color: "gray" }}
       >
         Got a question, project or want to work together on something? Feel free
         to reach out.
@@ -76,6 +76,7 @@ const FooterPhone = () => {
           component={motion.div}
           initial={animationVariant.initial}
           whileInView={animationVariant.animate}
+          width="100%"
         >
           <Stack p={1} px={3} borderRadius={4} sx={{ bgcolor: "#3232345e" }}>
             <FooterText
@@ -150,8 +151,8 @@ const FooterPhone = () => {
         direction="row"
         component={motion.div}
         initial={animationVariant.initial}
-        whileInView={animationVariant.animate} 
-        my={'32px'}
+        whileInView={animationVariant.animate}
+        my={"32px"}
       >
         <svg
           width="248"
@@ -245,15 +246,15 @@ const FooterPhone = () => {
         borderRadius={"32px 32px 0 0"}
         px={2}
         overflow="hidden"
+        gap='16px'
       >
-        <Stack gap="16px" alignItems="center">
+      
           {renderHeading()}
           {renderEmail()}
           {renderDivider()}
           {renderButtons()}
           {renderMarquee()}
-        </Stack>
-      </Stack>
+       </Stack>
     </footer>
   );
 };
