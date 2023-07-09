@@ -23,7 +23,6 @@ const Home = () => {
     return (
       <>
         <HeroSectionPhone />
-
         <MyWorkPhone />
         <TechStack />
         <FooterPhone />

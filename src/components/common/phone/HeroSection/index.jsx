@@ -1,11 +1,12 @@
 import { Box, Button, IconButton, Stack } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HeadingText, RegularText, SemiboldText } from "../../../styles/fonts";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import { constants } from "../../../../constants/index";
 import AppContext from "../../../../context/AppContext";
 import Images from "../../../../assets";
 import { ArrowDownward } from "@mui/icons-material";
+import Modal from "../../Modal/index";
 const entryContainerVariant = {
   initial: {
     opacity: 0,
@@ -31,7 +32,7 @@ const entryVariant = {
 const HeroSectionPhone = () => {
   const { loadingAnimationComplete } = useContext(AppContext);
   const headingTextOne = `FRONT-END`.split("");
-
+  const [open, setOpen] = useState(false);
   const headingTextTwo = `DEVELOPER`.split("");
   const entryAnimationControl = useAnimationControls();
   const HeroControl = useAnimationControls();
@@ -52,6 +53,7 @@ const HeroSectionPhone = () => {
   const renderNavbar = () => {
     return (
       <nav role="navigation">
+        <Modal setOpen={setOpen} open={open} />
         <Stack
           mx="auto"
           height="100px"
@@ -71,7 +73,7 @@ const HeroSectionPhone = () => {
             </SemiboldText>
           </Stack>
 
-          <motion.div variants={entryVariant}>
+          <motion.div variants={entryVariant} layoutId="modal">
             <Button
               sx={{ textTransform: "inherit" }}
               disableRipple
@@ -88,7 +90,11 @@ const HeroSectionPhone = () => {
                 borderRadius="100vmax"
                 py={0.5}
               >
-                <HeadingText variant="h6" sx={{ color: "#111111" }}>
+                <HeadingText
+                  variant="h6"
+                  sx={{ color: "#111111" }}
+                  onClick={() => setOpen(true)}
+                >
                   Contact
                 </HeadingText>
               </Stack>
