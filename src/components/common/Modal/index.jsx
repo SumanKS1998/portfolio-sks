@@ -28,12 +28,15 @@ const Modal = ({ open, setOpen }) => {
             backdropFilter: "blur(10px)",
           }}
           exit={{
-            backdropFilter: "blur(0px)",
+            opacity: "0",
           }}
           alignItems="center"
           justifyContent={"center"}
         >
-          <Stack sx={{ m: 4, borderRadius: "32px", overflow: "hidden" }}>
+          <Stack
+            sx={{ width:'90%', borderRadius: "32px", overflow: "hidden" }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <FooterPhone />
           </Stack>
         </Stack>
