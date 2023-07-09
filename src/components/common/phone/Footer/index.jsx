@@ -78,7 +78,6 @@ const FooterPhone = () => {
           initial={animationVariant.initial}
           whileInView={animationVariant.animate}
           viewport={{ once: true }}
-          width="95%"
         >
           <Stack p={1} px={3} borderRadius={4} sx={{ bgcolor: "#3232345e" }}>
             <FooterText
