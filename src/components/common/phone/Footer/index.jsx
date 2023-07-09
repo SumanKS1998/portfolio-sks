@@ -223,14 +223,22 @@ const FooterPhone = () => {
   };
   const renderMarquee = () => {
     return (
-      <FooterMarqueeText
+      <Stack
+        sx={{
+          whiteSpace: `nowrap`,
+          bottom: 0,
+        }}
         component={motion.div}
-        sx={{ fontSize: "85px", color: "#3233344f", lineHeight: "70%" }}
-        variants={marqueeVariants}
-        animate="animate"
       >
-        Let's talk.
-      </FooterMarqueeText>
+        <FooterMarqueeText
+          component={motion.div}
+          sx={{ fontSize: "120px", color: "#3233344f", lineHeight: "70%" }}
+          variants={marqueeVariants}
+          animate="animate"
+        >
+          {new Array(50).fill(0).map((item) => `Let's talk.`)}
+        </FooterMarqueeText>
+      </Stack>
     );
   };
   return (
@@ -250,10 +258,11 @@ const FooterPhone = () => {
         {renderEmail()}
         {renderDivider()}
         {renderButtons()}
-        {/* {renderMarquee()} */}
+        {renderMarquee()}
       </Stack>
     </footer>
   );
 };
+
 
 export default FooterPhone;
