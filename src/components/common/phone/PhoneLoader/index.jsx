@@ -40,9 +40,9 @@ const PhoneLoader = ({ setLoadingAnimationComplete }) => {
         },
       }}
       onAnimationComplete={() => {
-        setTimeout(() => {
+        // setTimeout(() => {
           setLoadingAnimationComplete(false);
-        }, 800);
+        // }, 50);
       }}
     >
       <HeadingText
