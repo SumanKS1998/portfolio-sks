@@ -83,8 +83,7 @@ const index = ({ appLoading, setLoadingAnimationComplete }) => {
               transition={{ duration: 0.5 }}
               height="100px"
             >
-              {/* Loaded let's go */}
-              Suman Kumar Sinha
+               Suman Kumar Sinha
             </HeadingText>
 
             <motion.div
