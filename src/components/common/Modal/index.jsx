@@ -7,8 +7,7 @@ import { BoldText, HeadingText, SemiboldText } from "../../styles/fonts";
 import LinkIcon from "@mui/icons-material/Link";
 import { Link } from "react-router-dom";
 const Modal = ({ open, setOpen, type, layoutId }) => {
-  console.log(layoutId);
-  const renderContact = () => {
+   const renderContact = () => {
     return (
       <Stack
         sx={{ borderRadius: "32px", overflow: "hidden" }}

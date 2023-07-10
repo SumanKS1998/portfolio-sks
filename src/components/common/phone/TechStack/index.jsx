@@ -89,11 +89,11 @@ const TechStack = () => {
           {techTypes.map((item) => {
             return (
               <Stack
+                key={item}
                 component={motion.div}
                 alignItems="center"
                 p={1}
                 borderRadius={2}
-                key={item.name}
                 onClick={() => setSelectedType(item)}
                 position="relative"
                 flex={1}
@@ -153,7 +153,7 @@ const TechStack = () => {
                   }}
                   onClick={() => {
                     setSelectedTech(item.name);
-                    handleModal()
+                    handleModal();
                   }}
                   layoutId={item.name}
                   py={5}

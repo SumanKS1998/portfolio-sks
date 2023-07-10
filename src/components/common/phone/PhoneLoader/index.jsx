@@ -34,7 +34,7 @@ const PhoneLoader = ({ setLoadingAnimationComplete }) => {
       animate={{
         y: loadComplete && "-150%",
         transition: {
-          delay: 1,
+          delay: 0.5,
           duration: 1.4,
           ease: constants[`transitions`],
         },
@@ -42,7 +42,7 @@ const PhoneLoader = ({ setLoadingAnimationComplete }) => {
       onAnimationComplete={() => {
         setTimeout(() => {
           setLoadingAnimationComplete(false);
-        }, 200);
+        }, 1000);
       }}
     >
       <HeadingText
@@ -60,14 +60,13 @@ const PhoneLoader = ({ setLoadingAnimationComplete }) => {
       </HeadingText>
       <Stack sx={{ position: "absolute", bottom: "-4%" }}>
         {loadComplete && (
-          <motion.div layout key={loadComplete}>
+          <motion.div layoutId="svg">
             <svg
               id="visual"
               viewBox="0 0 900 600"
               width="900"
               height="600"
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
               version="1.1"
             >
               <path
@@ -76,6 +75,12 @@ const PhoneLoader = ({ setLoadingAnimationComplete }) => {
               ></path>
             </svg>
           </motion.div>
+        )}
+        {!loadComplete && (
+          <motion.div
+            layoutId="svg"
+            style={{ width: "100vw", height: 0 }}
+          ></motion.div>
         )}
       </Stack>
     </Stack>
