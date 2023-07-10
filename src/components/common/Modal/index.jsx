@@ -34,10 +34,13 @@ const Modal = ({ open, setOpen }) => {
           justifyContent={"center"}
         >
           <Stack
-            sx={{ width:'90%', borderRadius: "32px", overflow: "hidden" }}
+            sx={{ borderRadius: "32px", overflow: "hidden" }}
             onClick={(e) => e.stopPropagation()}
+            component={motion.div}
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 0.8, transition: { delay: 0.1 } }}
           >
-            <FooterPhone />
+            <FooterPhone type="modal" />
           </Stack>
         </Stack>
       )}

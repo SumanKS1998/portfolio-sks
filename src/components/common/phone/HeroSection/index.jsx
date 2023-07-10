@@ -64,7 +64,6 @@ const HeroSectionPhone = () => {
           variants={entryContainerVariant}
           initial="initial"
           animate={entryAnimationControl}
-          overflow="hidden"
         >
           <Stack component={motion.div} variants={entryVariant}>
             <SemiboldText variant="body2">
