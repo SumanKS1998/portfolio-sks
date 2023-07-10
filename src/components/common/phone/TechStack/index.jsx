@@ -6,10 +6,13 @@ import Images from "../../../../assets";
 import { constants, tools } from "../../../../constants";
 import { ArrowForwardIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import Modal from "../../Modal";
 
 const TechStack = () => {
   const [filteredArray, setFilteredArray] = useState([]);
   const [selectedType, setSelectedType] = useState("All");
+  const [selectedTech, setSelectedTech] = useState();
+  const [open, setOpen] = useState(false);
   const techTypes = ["All", "Front-end", "Back-end"];
   const animationVariant = {
     initial: { opacity: 0, y: 100 },
@@ -33,8 +36,17 @@ const TechStack = () => {
     }
     setFilteredArray(tools.filter((item) => item.type === "Back-end"));
   }, [selectedType]);
+  const handleModal = () => {
+    setOpen(true);
+  };
   return (
     <section title="My Work">
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        type="tech"
+        layoutId={selectedTech}
+      />
       <Stack
         component={motion.div}
         my={"32px"}
@@ -108,7 +120,7 @@ const TechStack = () => {
                   sx={{
                     position: "relative",
                     zIndex: 3,
-                   }}
+                  }}
                 >
                   {item}
                 </SemiboldText>
@@ -139,7 +151,13 @@ const TechStack = () => {
                     zIndex: 4,
                     m: 1,
                   }}
+                  onClick={() => {
+                    setSelectedTech(item.name);
+                    handleModal()
+                  }}
+                  layoutId={item.name}
                   py={5}
+                  component={motion.div}
                 >
                   <Box
                     component={"img"}

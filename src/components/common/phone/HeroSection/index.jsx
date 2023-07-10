@@ -53,7 +53,7 @@ const HeroSectionPhone = () => {
   const renderNavbar = () => {
     return (
       <nav role="navigation">
-        <Modal setOpen={setOpen} open={open} />
+        <Modal setOpen={setOpen} open={open} type="contact" layoutId='contact' />
         <Stack
           mx="auto"
           height="100px"
@@ -72,7 +72,7 @@ const HeroSectionPhone = () => {
             </SemiboldText>
           </Stack>
 
-          <motion.div variants={entryVariant} layoutId="modal">
+          <motion.div variants={entryVariant} layoutId="contact">
             <Button
               sx={{ textTransform: "inherit" }}
               disableRipple

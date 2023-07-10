@@ -129,7 +129,7 @@ const FooterPhone = () => {
               </FooterText>
             </Stack>
           )}
-          <motion.div layout key={"emoji"}>
+          <motion.div layoutId key={"emoji"}>
             <Stack
               p={1}
               borderRadius={4}
