@@ -90,11 +90,7 @@ const HeroSection = () => {
   };
   return (
     <Stack minHeight="110vh">
-      <Modal
-        open={opent}
-        setOpen={setOpen}
-        type="contact"
-       />
+      <Modal open={opent} setOpen={setOpen} type="contact" />
       <AnimatePresence>
         {!loadingAnimationComplete && (
           <>
@@ -133,6 +129,8 @@ const HeroSection = () => {
                     disableTouchRipple
                     disableFocusRipple
                     aria-label="Contact Details"
+                    onClick={() => setOpen(true)}
+
                   >
                     <Stack
                       justifyContent="center"
@@ -158,7 +156,6 @@ const HeroSection = () => {
                           borderRadius="100vmax"
                           position="absolute"
                           right="0"
-                          onClick={() => setOpen(true)}
                         >
                           <ArrowForwardIos sx={{ color: "#ffffe3" }} />
                         </Stack>
@@ -179,8 +176,7 @@ const HeroSection = () => {
                             borderRadius="100vmax"
                             position="absolute"
                             right="0"
-                            onClick={() => setOpen(true)}
-                           >
+                          >
                             <ArrowForwardIos sx={{ color: "#ffffe3" }} />
                           </Stack>
                         )}
