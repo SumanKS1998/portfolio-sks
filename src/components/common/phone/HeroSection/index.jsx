@@ -1,11 +1,10 @@
-import { Box, Button, IconButton, Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { HeadingText, RegularText, SemiboldText } from "../../../styles/fonts";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import { constants } from "../../../../constants/index";
 import AppContext from "../../../../context/AppContext";
 import Images from "../../../../assets";
-import { ArrowDownward } from "@mui/icons-material";
 import Modal from "../../Modal/index";
 const entryContainerVariant = {
   initial: {
@@ -53,7 +52,12 @@ const HeroSectionPhone = () => {
   const renderNavbar = () => {
     return (
       <nav role="navigation">
-        <Modal setOpen={setOpen} open={open} type="contact" layoutId='contact' />
+        <Modal
+          setOpen={setOpen}
+          open={open}
+          type="contact"
+          layoutId="contact"
+        />
         <Stack
           mx="auto"
           height="100px"
@@ -78,6 +82,7 @@ const HeroSectionPhone = () => {
               disableRipple
               disableTouchRipple
               disableFocusRipple
+              aria-label="Contact Details"
             >
               <Stack
                 justifyContent="center"

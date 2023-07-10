@@ -1,25 +1,17 @@
-import { Box, Button, Stack, Tooltip } from "@mui/material";
-import React, {
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { Box, Stack, Tooltip } from "@mui/material";
+import React, { useContext, useEffect, useRef } from "react";
 import {
   AnimatePresence,
   motion,
-  useAnimation,
   useAnimationControls,
   useInView,
   useScroll,
 } from "framer-motion";
 import { constants } from "../../../constants";
-import Images from "../../../assets";
 import AppContext from "../../../context/AppContext";
 import Spline from "@splinetool/react-spline";
 import Heading from "./Heading";
-import { BoldText, HeadingText } from "../../styles/fonts";
+import { HeadingText } from "../../styles/fonts";
 import { ParallaxText } from "../ParallaxText";
 import Frame from "./Frames";
 import MyTools from "../MyTools";

@@ -59,7 +59,7 @@ const HeroSection = () => {
           component="img"
           src={image}
           sx={{ height: "16vw", bgcolor: "#9fe870", mt: 1 }}
-          alt='Suman Kumar Sinha'
+          alt="Suman Kumar Sinha"
         />
       );
     }
@@ -131,6 +131,7 @@ const HeroSection = () => {
                     disableRipple
                     disableTouchRipple
                     disableFocusRipple
+                    aria-label="Contact Details"
                   >
                     <Stack
                       justifyContent="center"
@@ -188,106 +189,111 @@ const HeroSection = () => {
               </Stack>{" "}
             </nav>
             <main role="marquee">
-            <Stack
-              flex={1}
-              justifyContent="center"
-              component={motion.div}
-              initial="initial"
-              animate="animate"
-              variants={entryContainerVariant}
-            >
-              <ParallaxText direction={false}>
-                <Stack
-                  width="100vw"
-                  mx="auto"
-                  direction="row"
-                  justifyContent={"space-between"}
-                  component={motion.div}
-                  variants={entryVariant}
-                >
-                  {renderTitle({ text: headingTextOne, fontSize: "20vw" })}
-                  {renderTitle({ image: Images.SumanImage, fontSize: "20vw" })}
-                  {renderTitle({ text: headingTextSubTwo, fontSize: "20vw" })}
-                </Stack>
-              </ParallaxText>
-              <ParallaxText direction={true}>
-                <Stack
-                  width="100vw"
-                  mx="auto"
-                  direction="row"
-                  justifyContent="space-between"
-                  gap="50px"
-                >
-                  {renderTitle({ text: headingTextTwo, fontSize: "22vw" })}
+              <Stack
+                flex={1}
+                justifyContent="center"
+                component={motion.div}
+                initial="initial"
+                animate="animate"
+                variants={entryContainerVariant}
+              >
+                <ParallaxText direction={false}>
                   <Stack
-                    gap="48px"
-                    width={{ xs: "340px ", xl: "500px " }}
-                    py={1}
-                    height="40vh"
-                    overflow="hidden"
-                    sx={{ whiteSpace: "pre-wrap !important" }}
-                    mr={5}
+                    width="100vw"
+                    mx="auto"
+                    direction="row"
+                    justifyContent={"space-between"}
+                    component={motion.div}
+                    variants={entryVariant}
                   >
-                    <RegularText
-                      sx={{
-                        lineHeight: "120%",
-                        fontSize: { xs: "18px", xl: "22px" },
-                      }}
-                      component={motion.div}
-                      variants={entryVariant}
+                    {renderTitle({ text: headingTextOne, fontSize: "20vw" })}
+                    {renderTitle({
+                      image: Images.SumanImage,
+                      fontSize: "20vw",
+                    })}
+                    {renderTitle({ text: headingTextSubTwo, fontSize: "20vw" })}
+                  </Stack>
+                </ParallaxText>
+                <ParallaxText direction={true}>
+                  <Stack
+                    width="100vw"
+                    mx="auto"
+                    direction="row"
+                    justifyContent="space-between"
+                    gap="50px"
+                  >
+                    {renderTitle({ text: headingTextTwo, fontSize: "22vw" })}
+                    <Stack
+                      gap="48px"
+                      width={{ xs: "340px ", xl: "500px " }}
+                      py={1}
+                      height="40vh"
+                      overflow="hidden"
+                      sx={{ whiteSpace: "pre-wrap !important" }}
+                      mr={5}
                     >
-                      <SemiboldText
-                        component={"span"}
-                        mr={"16px"}
+                      <RegularText
                         sx={{
                           lineHeight: "120%",
-                          color: "#777777",
+                          fontSize: { xs: "18px", xl: "22px" },
                         }}
-                        variant="h6"
+                        component={motion.div}
+                        variants={entryVariant}
                       >
-                        ABOUT
-                      </SemiboldText>
-                      I am a developer based in Guwahati, India, with a
-                      specialization in building exceptional digital experiences
-                      on the web. My current focus revolves around crafting
-                      remarkable products at Ellenox.
-                    </RegularText>
-                    <Stack
-                      direction="row"
-                      justifyContent="space-between"
-                      component={motion.div}
-                      variants={entryVariant}
-                    >
-                      <SemiboldText sx={{ color: "#777777" }} variant="h6">
-                        Scroll Down
-                      </SemiboldText>
-                      <IconButton
-                        sx={{
-                          height: "40px",
-                          width: "40px",
-                          overflow: "hidden",
-                        }}
+                        <SemiboldText
+                          component={"span"}
+                          mr={"16px"}
+                          sx={{
+                            lineHeight: "120%",
+                            color: "#777777",
+                          }}
+                          variant="h6"
+                        >
+                          ABOUT
+                        </SemiboldText>
+                        I am a developer based in Guwahati, India, with a
+                        specialization in building exceptional digital
+                        experiences on the web. My current focus revolves around
+                        crafting remarkable products at Ellenox.
+                      </RegularText>
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        component={motion.div}
+                        variants={entryVariant}
                       >
-                        <motion.div
-                          initial={{ y: "-100%" }}
-                          animate={{
-                            y: ["-100%", "0%", "5%", "-5%", "100%"],
-                            transition: {
-                              duration: 1.3,
-                              repeat: "infinity",
-                            },
+                        <SemiboldText sx={{ color: "#777777" }} variant="h6">
+                          Scroll Down
+                        </SemiboldText>
+                        <Stack
+                          sx={{
+                            height: "30px",
+                            width: "40px",
+                            overflow: "hidden",
+                            alignItems: "center",
+                            justifyContent: "center",
                           }}
                         >
-                          <ArrowDownward
-                            sx={{ color: "#777777", fontSize: "30px" }}
-                          />
-                        </motion.div>
-                      </IconButton>
+                          <motion.div
+                            initial={{ y: "-100%" }}
+                            animate={{
+                              y: ["-100%", "0%", "-25%", "100%"],
+                              transition: {
+                                duration: 1.3,
+                                repeat: "infinity",
+                              },
+                            }}
+                          >
+                            <ArrowDownward
+                              sx={{ color: "#777777", fontSize: "20px" }}
+                            />
+                          </motion.div>
+                        </Stack>
+                      </Stack>
                     </Stack>
                   </Stack>
-                </Stack>{" "}
-              </ParallaxText>
-            </Stack>
+                </ParallaxText>
+              </Stack>
             </main>
           </>
         )}
