@@ -158,6 +158,7 @@ const HeroSection = () => {
                           borderRadius="100vmax"
                           position="absolute"
                           right="0"
+                          onClick={() => setOpen(true)}
                         >
                           <ArrowForwardIos sx={{ color: "#ffffe3" }} />
                         </Stack>
