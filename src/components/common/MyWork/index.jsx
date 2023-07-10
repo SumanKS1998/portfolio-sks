@@ -136,6 +136,7 @@ const MyWork = () => {
             href={data.link}
             target="_blank"
             sx={{ textDecoration: "none", color: color || "#fff !important" }}
+            aria-label={text}
           >
             {text}
           </HeadingText>

@@ -136,6 +136,7 @@ const FooterPhone = () => {
               sx={{ bgcolor: "#3232345e", cursor: "pointer" }}
               component={"a"}
               href={`mailto:sinhasumank41@gmail.com`}
+              aria-label="Send an email to sinhasumank41@gmail.com"
             >
               <FooterText variant="h4" component={motion.div}>
                 📧
@@ -187,6 +188,7 @@ const FooterPhone = () => {
             to={link.socialLink}
             key={i}
             style={{ textDecoration: "none" }}
+            aria-label={link.socialPlatform}
           >
             <Stack
               sx={{
@@ -224,22 +226,22 @@ const FooterPhone = () => {
   const renderMarquee = () => {
     return (
       <Stack
-      sx={{
-        position: "absolute",
-        whiteSpace: `nowrap`,
-        bottom: 0,
-      }}
-      component={motion.div}
-    >
-      <FooterMarqueeText
+        sx={{
+          position: "absolute",
+          whiteSpace: `nowrap`,
+          bottom: 0,
+        }}
         component={motion.div}
-        sx={{ fontSize: "26vw", color: "#3233344f", lineHeight: "70%" }}
-        variants={marqueeVariants}
-        animate="animate"
       >
-        {new Array(100).fill(0).map((item) => `Let's talk.`)}
-      </FooterMarqueeText>
-    </Stack>
+        <FooterMarqueeText
+          component={motion.div}
+          sx={{ fontSize: "26vw", color: "#3233344f", lineHeight: "70%" }}
+          variants={marqueeVariants}
+          animate="animate"
+        >
+          {new Array(100).fill(0).map((item) => `Let's talk.`)}
+        </FooterMarqueeText>
+      </Stack>
     );
   };
   return (
@@ -253,14 +255,14 @@ const FooterPhone = () => {
         px={2}
         overflow="hidden"
         gap="16px"
-        component={motion.div}pb={'100px'}
+        component={motion.div}
+        pb={"100px"}
       >
         {renderHeading()}
         {renderEmail()}
         {renderDivider()}
         {renderButtons()}
         {renderMarquee()}
-    
       </Stack>
     </footer>
   );

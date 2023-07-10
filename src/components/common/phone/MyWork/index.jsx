@@ -130,7 +130,7 @@ const MyWorkPhone = () => {
                     })}
                   </Stack>
                 </Stack>
-                <Link to={item.link} target="_blank">
+                <Link to={item.link} target="_blank" aria-label={item.name}>
                   <Stack
                     component={motion.div}
                     sx={{

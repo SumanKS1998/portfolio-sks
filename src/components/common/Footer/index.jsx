@@ -51,6 +51,7 @@ const Footer = () => {
               to={link.socialLink}
               key={i}
               style={{ textDecoration: "none" }}
+              aria-label={link.socialPlatform}
             >
               <Stack
                 sx={{

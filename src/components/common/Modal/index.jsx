@@ -57,6 +57,7 @@ const Modal = ({ open, setOpen, type, layoutId }) => {
               component={Link}
               to={selectedTech.link}
               target="_blank"
+              aria-label={selectedTech.name}
             >
               <motion.div initial={{ rotate: -45 }}>
                 <LinkIcon />
