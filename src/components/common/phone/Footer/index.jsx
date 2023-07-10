@@ -60,7 +60,7 @@ const FooterPhone = () => {
         textAlign={"center"}
         sx={{
           color: "gray",
-          width: { xs: "100%", md: "500px" },
+          width: { xs: "100%", md: "800px" },
           mx: "auto",
           mb: { xs: 0, md: 2 },
           fontSize: { xs: "24px", md: "38px" },
@@ -93,6 +93,7 @@ const FooterPhone = () => {
           viewport={{ once: true }}
           layout
           key={"emoji"}
+          flex={1}
         >
           <Stack
             p={1}
@@ -103,7 +104,7 @@ const FooterPhone = () => {
           >
             <FooterText
               textAlign={"center"}
-              sx={{ color: "#9fe870", fontSize: "24px" }}
+              sx={{ color: "#9fe870", fontSize: { xs: "24px", md: "38px" } }}
             >
               sinhasumank41@gmail.com
             </FooterText>
@@ -137,7 +138,7 @@ const FooterPhone = () => {
                   p: 1,
                   px: 2,
                   borderRadius: "16px",
-                  fontSize: { xs: "16px", md: "22px" },
+                  fontSize: { xs: "20px", md: "35px" },
                 }}
                 variant="body1"
               >
@@ -151,7 +152,11 @@ const FooterPhone = () => {
               sx={{ bgcolor: "#3232345e", cursor: "pointer" }}
               onClick={copyEmail}
             >
-              <FooterText variant="h4" layoutId="emoji" component={motion.div}>
+              <FooterText
+                layoutId="emoji"
+                component={motion.div}
+                sx={{ fontSize: { xs: "24px", md: "48px" } }}
+              >
                 📋
               </FooterText>
             </Stack>
@@ -159,13 +164,18 @@ const FooterPhone = () => {
           <motion.div layoutId key={"emoji"}>
             <Stack
               p={1}
+              py={{ xs: 1.4, md: 1.8 }}
               borderRadius={4}
               sx={{ bgcolor: "#3232345e", cursor: "pointer" }}
               component={"a"}
               href={`mailto:sinhasumank41@gmail.com`}
               aria-label="Send an email to sinhasumank41@gmail.com"
             >
-              <FooterText variant="h4" component={motion.div}>
+              <FooterText
+                variant="h4"
+                component={motion.div}
+                sx={{ fontSize: { xs: "24px", md: "48px" } }}
+              >
                 📧
               </FooterText>
             </Stack>
@@ -282,7 +292,7 @@ const FooterPhone = () => {
         position="relative"
         py={4}
         borderRadius={"32px 32px 0 0"}
-        px={2}
+        px={{ xs: 2, md: 4 }}
         overflow="hidden"
         gap="16px"
         component={motion.div}
