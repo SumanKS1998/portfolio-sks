@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { ThemeProvider } from "@emotion/react";
 import {
   Stack,
@@ -10,7 +10,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
 import AppContext from "./context/AppContext";
 import Loader from "./components/common/Loader";
-import { FooterText } from "./components/styles/fonts";
 import PhoneLoader from "./components/common/phone/PhoneLoader";
 
 function App() {

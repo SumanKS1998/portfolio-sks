@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { HeadingText, RegularText, SemiboldText } from "../../styles/fonts";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,11 +7,13 @@ import { constants } from "../../../constants";
 import { ParallaxText } from "../ParallaxText";
 import AppContext from "../../../context/AppContext";
 import Images from "../../../assets";
+import Modal from "../Modal";
 
 const HeroSection = () => {
   const { loadingAnimationComplete } = useContext(AppContext);
   const [firstAnimationOver, setFirstAnimationOver] = useState(false);
   const [contactBtnHovered, setContedtBtnHovered] = useState(false);
+  const [opent, setOpen] = useState(false);
   const headingTextOne = `FRONT`.split("");
   const headingTextSubTwo = `END`.split("");
   const headingTextTwo = `DEVELOPER`.split("");
@@ -86,14 +88,13 @@ const HeroSection = () => {
       },
     },
   };
-  const getToBottom = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
-    });
-  };
   return (
     <Stack minHeight="110vh">
+      <Modal
+        open={opent}
+        setOpen={setOpen}
+        type="contact"
+       />
       <AnimatePresence>
         {!loadingAnimationComplete && (
           <>
@@ -177,8 +178,8 @@ const HeroSection = () => {
                             borderRadius="100vmax"
                             position="absolute"
                             right="0"
-                            onClick={getToBottom}
-                          >
+                            onClick={() => setOpen(true)}
+                           >
                             <ArrowForwardIos sx={{ color: "#ffffe3" }} />
                           </Stack>
                         )}

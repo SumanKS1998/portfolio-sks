@@ -1,11 +1,8 @@
 import { Box, Grid, Stack } from "@mui/material";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { HeadingText, SemiboldText } from "../../../styles/fonts";
-import Images from "../../../../assets";
 import { constants, tools } from "../../../../constants";
-import { ArrowForwardIos } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import Modal from "../../Modal";
 
 const TechStack = () => {

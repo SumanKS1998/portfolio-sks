@@ -5,17 +5,9 @@ import {
   FooterText,
   HeadingText,
 } from "../../styles/fonts";
-import { ParallaxText } from "../ParallaxText";
-import {
-  AnimatePresence,
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
-import { Button, Stack } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
+import { Stack } from "@mui/material";
 import { socialLinks } from "../../../constants";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 const Footer = () => {

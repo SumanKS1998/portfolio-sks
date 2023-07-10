@@ -1,4 +1,4 @@
-import { Divider, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import React, { useState } from "react";
 import {
   FooterHeadingText,
@@ -7,7 +7,7 @@ import {
   HeadingText,
   SemiboldText,
 } from "../../../styles/fonts";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { socialLinks } from "../../../../constants";
 import { Link } from "react-router-dom";
 import { constants } from "../../../../constants/index";
@@ -58,7 +58,15 @@ const FooterPhone = () => {
         viewport={{ once: true }}
         variant="h4"
         textAlign={"center"}
-        sx={{ color: "gray" }}
+        sx={{
+          color: "gray",
+          width: { xs: "100%", md: "500px" },
+          mx: "auto",
+          mb: { xs: 0, md: 2 },
+          fontSize: { xs: "24px", md: "38px" },
+          zIndex: 2,
+          position: "relative",
+        }}
       >
         Got a question, project or want to work together on something? Feel free
         to reach out.
@@ -67,7 +75,12 @@ const FooterPhone = () => {
   };
   const renderEmail = () => {
     return (
-      <Stack gap="8px">
+      <Stack
+        gap="8px"
+        direction={{ xs: "column", md: "row" }}
+        justifyContent={"center"}
+        sx={{ zIndex: 2, position: "relative" }}
+      >
         <Stack
           borderRadius={4}
           bgcolor="#000000"
@@ -78,8 +91,16 @@ const FooterPhone = () => {
           initial={animationVariant.initial}
           whileInView={animationVariant.animate}
           viewport={{ once: true }}
+          layout
+          key={"emoji"}
         >
-          <Stack p={1} px={3} borderRadius={4} sx={{ bgcolor: "#3232345e" }}>
+          <Stack
+            p={1}
+            px={3}
+            borderRadius={4}
+            sx={{ bgcolor: "#3232345e" }}
+            component={motion.div}
+          >
             <FooterText
               textAlign={"center"}
               sx={{ color: "#9fe870", fontSize: "24px" }}
@@ -90,7 +111,7 @@ const FooterPhone = () => {
         </Stack>
         <Stack
           direction="row"
-          width="100%"
+          width={{ xs: "100%", md: "auto" }}
           gap="8px"
           alignItems="center"
           component={motion.div}
@@ -111,7 +132,13 @@ const FooterPhone = () => {
               layoutId="emoji"
             >
               <SemiboldText
-                sx={{ bgcolor: "#111111", p: 1, px: 2, borderRadius: "16px" }}
+                sx={{
+                  bgcolor: "#111111",
+                  p: 1,
+                  px: 2,
+                  borderRadius: "16px",
+                  fontSize: { xs: "16px", md: "22px" },
+                }}
                 variant="body1"
               >
                 ✅ Copied
@@ -158,6 +185,7 @@ const FooterPhone = () => {
         whileInView={animationVariant.animate}
         viewport={{ once: true }}
         my={"32px"}
+        sx={{ position: "relative", zIndex: 2 }}
       >
         <svg
           width="248"
@@ -181,6 +209,7 @@ const FooterPhone = () => {
         justifyContent="space-between"
         width="100%"
         gap={"8px"}
+        sx={{ zIndex: 2, position: "relative" }}
       >
         {socialLinks.map((link, i) => (
           <Link
@@ -196,7 +225,7 @@ const FooterPhone = () => {
                 p: 2,
                 borderRadius: "16px",
                 color: "#808080",
-                width: "60px",
+                width: { xs: "60px", md: "150px" },
               }}
               alignItems="center"
               justifyContent={"center"}
@@ -207,12 +236,12 @@ const FooterPhone = () => {
               viewport={{ once: true }}
             >
               <HeadingText
-                variant="body1"
                 sx={{
                   color: "inherit",
                   lineHeight: "90%",
                   mx: "auto",
                   textAlign: "center",
+                  fontSize: { xs: "16px", md: "24px" },
                 }}
               >
                 {link.socialPlatform}
@@ -230,6 +259,7 @@ const FooterPhone = () => {
           position: "absolute",
           whiteSpace: `nowrap`,
           bottom: 0,
+          zIndex: 0,
         }}
         component={motion.div}
       >
