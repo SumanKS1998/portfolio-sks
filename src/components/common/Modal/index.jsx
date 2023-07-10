@@ -28,9 +28,9 @@ const Modal = ({ open, setOpen, type, layoutId }) => {
       <Stack
         sx={{
           bgcolor: "#111",
-          width: "95%",
+          width: "90%",
           borderRadius: 4,
-          p: 2,
+          p: 1,
           mx: "auto",
         }}
         onClick={(e) => e.stopPropagation()}
