@@ -30,6 +30,7 @@ const ToolColumn = ({ tools, translateY, scale }) => {
             component="img"
             src={item.icon}
             sx={{ width: "200px", height: "200px" }}
+            alt={item.icon}
           />
         </Stack>
       ))}

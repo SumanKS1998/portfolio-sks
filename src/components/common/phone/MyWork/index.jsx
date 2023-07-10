@@ -71,7 +71,7 @@ const MyWorkPhone = () => {
                   alt={item.name}
                   src={item.image}
                   sx={{ objectFit: "contain", height: "100%", width: "100%" }}
-                />
+                 />
 
                 <Stack
                   direction="row"

@@ -163,6 +163,7 @@ const TechStack = () => {
                     component={"img"}
                     src={item.icon}
                     sx={{ height: "50px", width: "50px" }}
+                    alt={item.name}
                   />
                 </Stack>
                 <Stack
@@ -179,6 +180,7 @@ const TechStack = () => {
                     component={"img"}
                     src={item.icon}
                     sx={{ height: "50px", width: "50px" }}
+                    alt={item.name}
                   />
                 </Stack>
               </Grid>

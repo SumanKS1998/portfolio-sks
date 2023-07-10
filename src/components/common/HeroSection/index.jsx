@@ -59,6 +59,7 @@ const HeroSection = () => {
           component="img"
           src={image}
           sx={{ height: "16vw", bgcolor: "#9fe870", mt: 1 }}
+          alt='Suman Kumar Sinha'
         />
       );
     }

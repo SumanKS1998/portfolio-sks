@@ -38,12 +38,18 @@ const titleVariants = {
   },
 };
 
-const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading,color}) => {
+const Heading = ({
+  scrollY,
+  headingText,
+  subHeadingText,
+  hideSubHeading,
+  color,
+}) => {
   const springRotator = useSpring(scrollY, {
     stiffness: 50,
     damping: 30,
   });
-   const rotateStar = useTransform(springRotator, [-2000, 2000], [0, 1000]);
+  const rotateStar = useTransform(springRotator, [-2000, 2000], [0, 1000]);
   const ref = useRef(null);
   const title = headingText?.split("");
   return (
@@ -67,12 +73,17 @@ const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading,color}) 
           {title?.map((item, i) => {
             return (
               <motion.div key={i}>
-                <HeadingText sx={{ fontSize: "10vw" ,}}>{item}</HeadingText>
+                <HeadingText sx={{ fontSize: "10vw" }}>{item}</HeadingText>
               </motion.div>
             );
           })}
         </Stack>
-        <Stack direction="row" justifyContent="center" ref={ref} display={hideSubHeading ? "none" : "flex"}>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          ref={ref}
+          display={hideSubHeading ? "none" : "flex"}
+        >
           <motion.img
             variants={titleVariants}
             src={Images.StarSvg}
@@ -81,6 +92,7 @@ const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading,color}) 
               width: "50px",
               margin: "10px 1em",
             }}
+            alt="star"
           />
           <motion.img
             variants={titleVariants}
@@ -90,6 +102,7 @@ const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading,color}) 
               width: "100px",
               margin: "10px 1em",
             }}
+            alt="star"
           />
           <motion.img
             variants={titleVariants}
@@ -99,9 +112,14 @@ const Heading = ({ scrollY, headingText, subHeadingText ,hideSubHeading,color}) 
               width: "50px",
               margin: "10px 1em",
             }}
+            alt="star"
           />
         </Stack>
-        <Stack component={motion.div} textAlign={{ xs: "center" }} display={hideSubHeading ? "none" : "flex"}>
+        <Stack
+          component={motion.div}
+          textAlign={{ xs: "center" }}
+          display={hideSubHeading ? "none" : "flex"}
+        >
           <Stack width="max-content" ml="auto" gap="8px">
             {subHeadingText?.map((item) => {
               return (
