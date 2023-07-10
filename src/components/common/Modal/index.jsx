@@ -21,10 +21,10 @@ const Modal = ({ open, setOpen, type, layoutId }) => {
       </Stack>
     );
   };
+  
   const renderTech = () => {
     const selectedTech = tools.find((item) => item.name === layoutId);
-    console.log(selectedTech);
-    return (
+     return (
       <Stack
         sx={{
           bgcolor: "#111",
@@ -75,7 +75,7 @@ const Modal = ({ open, setOpen, type, layoutId }) => {
   const conditionalRenderer = () => {
     if (type === "contact") return renderContact();
     if (type === "tech") return renderTech();
-  };
+   };
   return (
     <AnimatePresence>
       {open && (

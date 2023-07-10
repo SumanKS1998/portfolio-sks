@@ -1,8 +1,8 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Tooltip } from "@mui/material";
 import { motion } from "framer-motion";
 import React from "react";
 import { HeadingText, SemiboldText } from "../../../styles/fonts";
- import { constants } from "../../../../constants";
+import { constants } from "../../../../constants";
 import { ArrowForwardIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -104,26 +104,28 @@ const MyWorkPhone = () => {
                   >
                     {item.techStack.map((tech) => {
                       return (
-                        <Stack
-                          key={tech.name}
-                          sx={{
-                            bgcolor: "#111111",
-                            borderRadius: "100vmax",
-                          }}
-                          alignItems="center"
-                          justifyContent="center"
-                        >
-                          <Box
-                            component="img"
-                            alt="Niyasa Global"
-                            src={tech.icon}
+                        <Tooltip key={tech.name} title={tech.name} arrow placement="top" enterTouchDelay={0}>
+                          <Stack
+                            
                             sx={{
-                              objectFit: "contain",
-                              height: "30px",
-                              width: "30px",
+                              bgcolor: "#111111",
+                              borderRadius: "100vmax",
                             }}
-                          />
-                        </Stack>
+                            alignItems="center"
+                            justifyContent="center"
+                          >
+                            <Box
+                              component="img"
+                              alt="Niyasa Global"
+                              src={tech.icon}
+                              sx={{
+                                objectFit: "contain",
+                                height: "30px",
+                                width: "30px",
+                              }}
+                            />
+                          </Stack>
+                        </Tooltip>
                       );
                     })}
                   </Stack>
