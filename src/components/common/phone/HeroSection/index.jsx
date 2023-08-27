@@ -146,7 +146,7 @@ const HeroSectionPhone = () => {
             alt="Suman Kumar Sinha"
             sx={{
               bgcolor: "#9fe870",
-              height: "30vh",
+              height: "40vh",
               mt: 1,
               mb: 1.5,
               objectFit: "cover",

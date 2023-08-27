@@ -1,4 +1,4 @@
-import SumanImage from "./images/suman.webp";
+import SumanImage from "./images/suman.png";
 import StarSvg from "./svgs/star.svg";
 import ArrowRightSvg from "./svgs/arrow-right.svg";
 import ArrowLeftSvg from "./svgs/arrow-left.svg";

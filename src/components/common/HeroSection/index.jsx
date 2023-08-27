@@ -14,8 +14,8 @@ const HeroSection = () => {
   const [firstAnimationOver, setFirstAnimationOver] = useState(false);
   const [contactBtnHovered, setContedtBtnHovered] = useState(false);
   const [opent, setOpen] = useState(false);
-  const headingTextOne = `FRONT`.split("");
-  const headingTextSubTwo = `END`.split("");
+  const headingTextOne = `FRONT -`.split("");
+  const headingTextSubTwo = `- END`.split("");
   const headingTextTwo = `DEVELOPER`.split("");
   const renderTitle = ({ text, fontSize, image }) => {
     if (text) {
@@ -60,7 +60,14 @@ const HeroSection = () => {
         <Box
           component="img"
           src={image}
-          sx={{ height: "16vw", bgcolor: "#9fe870", mt: 1 }}
+          sx={{
+            height: "16vw",
+            width: "16vw",
+            objectFit: "cover",
+            bgcolor: "#9fe870",
+            mt: 1,
+            borderRadius: "100vmax",
+          }}
           alt="Suman Kumar Sinha"
         />
       );
@@ -130,7 +137,6 @@ const HeroSection = () => {
                     disableFocusRipple
                     aria-label="Contact Details"
                     onClick={() => setOpen(true)}
-
                   >
                     <Stack
                       justifyContent="center"
